@@ -1,0 +1,115 @@
+.page {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  background-color: #000000;
+}
+
+.popup {
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup_opened {
+  display: flex;
+}
+
+.popup__wrapper {
+  position: relative;
+  min-width: 430px;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.popup__container {
+  min-width: 358px;
+}
+
+.popup__input-container {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__header {
+  padding: 0;
+  margin-bottom: 54px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.popup__input {
+  padding: 0 0 13px 0;
+  font-family: inherit;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.popup__input:focus {
+  outline: none;
+}
+
+.popup__input_content_name {
+  margin-bottom: 30px;
+}
+
+.popup__input_content_description {
+  margin-bottom: 48px;
+}
+
+.popup__save-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  min-height: 50px;
+  background-color: #000000;
+  border-radius: 2px;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.2s ease-out;
+}
+
+.popup__save-button:hover {
+  opacity: 0.8;
+}
+
+.popup__close-icon {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  cursor: pointer;
+  transition: opacity 0.2s ease-out;
+}
+
+.popup__close-icon:hover {
+  opacity: 0.6;
+}

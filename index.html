@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
+<body class="page">
+  <section class="popup">
+    <div class="popup__wrapper">
+      <form class="popup__container">
+        <fieldset class="popup__input-container">
+          <legend class="popup__header">Редактировать профиль</legend>
+          <input type="text" class="popup__input popup__input_content_name">
+          <input type="text" class="popup__input popup__input_content_description">
+        </fieldset>
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </form>
+      <img src="images/Close Icon.svg" alt="Закрыть форму" class="popup__close-icon">
+    </div>
+  </section>
 </body>
 </html>
