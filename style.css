@@ -7,15 +7,22 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
+  font-style: normal;
   background-color: #000000;
+  color: #ffffff;
 }
 
 .popup {
-  height: 100vh;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   display: none;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 .popup_opened {
@@ -50,11 +57,10 @@
 .popup__header {
   padding: 0;
   margin-bottom: 54px;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.2;
+  color: #000000;
 }
 
 .popup__input {
@@ -62,10 +68,10 @@
   font-family: inherit;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
+  color: #000000;
 }
 
 .popup__input:focus {
@@ -89,7 +95,6 @@
   background-color: #000000;
   border-radius: 2px;
   font-family: inherit;
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
@@ -112,4 +117,178 @@
 
 .popup__close-icon:hover {
   opacity: 0.6;
+}
+
+.header {
+  max-width: 880px;
+  min-height: 74px;
+  margin: 45px auto 0;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  display: flex;
+}
+
+.header__logo {
+  background-image: url("images/logo.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 142px;
+  height: 33px;
+}
+
+.profile {
+  max-width: 880px;
+  margin: 36px auto 47px;
+  display: grid;
+  grid-template-columns: 169px 1fr 150px;
+  align-items: center;
+}
+
+.profile__picture {
+  width: 125px;
+  height: 125px;
+  background-image: url("images/Custo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+.profile__info {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  align-items: flex-start;
+}
+
+.profile__name-wrapper {
+  display: flex;
+  column-gap: 18px;
+}
+
+.profile__name {
+  margin: 0;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+}
+
+.profile__edit-button {
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  background-image: url("images/EditButton.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid #ffffff;
+  align-self: center;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+  z-index: -1;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+.profile__description {
+  margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.profile__add-button {
+  padding: 0;
+  max-width: 150px;
+  min-height: 50px;
+  background-color: transparent;
+  background-image: url("images/Plus.svg");
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+}
+
+.cards {
+  max-width: 880px;
+  margin: auto;
+}
+
+.cards__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, fit-content(282px));
+  grid-template-rows: repeat(2, fit-content(361px));
+  column-gap: 17px;
+  row-gap: 20px;
+}
+
+.cards__item {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cards__image {
+  max-width: 282px;
+  max-height: 282px;
+  object-fit: cover;
+}
+
+.cards__caption {
+  padding: 0 15px 0 21px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 246px;
+  align-items: center;
+  min-height: 79px;
+}
+
+.cards__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+}
+
+.cards__like-button {
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  background-image: url("images/LikeButton.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: 0;
+  cursor: pointer;
+}
+
+.cards__like-button:hover {
+  opacity: 0.6;
+}
+
+.footer {
+  margin: 67px auto 60px;
+  max-width: 880px;
+}
+
+.footer__copyright {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
 }
