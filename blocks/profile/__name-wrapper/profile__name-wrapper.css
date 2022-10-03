@@ -1,0 +1,10 @@
+.profile__name-wrapper {
+  display: flex;
+  column-gap: 18px;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__name-wrapper {
+    column-gap: 10px;
+  }
+}

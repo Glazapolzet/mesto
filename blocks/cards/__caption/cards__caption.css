@@ -1,0 +1,8 @@
+.cards__caption {
+  margin: 0 15px 0 21px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 246px;
+  align-items: center;
+  min-height: 79px;
+}
