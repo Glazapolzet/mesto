@@ -1,0 +1,7 @@
+@font-face {
+  src: url('../fonts/Inter-Black.woff2') format('woff2'),
+       url('../fonts/Inter-Black.otf') format('opentype');
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+}

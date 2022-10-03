@@ -17,12 +17,12 @@
 }
 
 .popup {
+  display: none;
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  display: none;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
@@ -87,7 +87,7 @@
   margin-bottom: 30px;
 }
 
-.popup__input_content_description {
+.popup__input_content_job {
   margin-bottom: 48px;
 }
 
@@ -105,7 +105,6 @@
   line-height: 1.2;
   color: #ffffff;
   cursor: pointer;
-  transition: opacity 0.2s ease-out;
 }
 
 .popup__save-button:hover {
@@ -125,7 +124,6 @@
   top: -40px;
   right: -40px;
   cursor: pointer;
-  transition: opacity 0.2s ease-out;
 }
 
 .popup__close-button:hover {
@@ -211,11 +209,11 @@
   opacity: 0.6;
 }
 
-.profile__description {
+.profile__job {
   margin: 0;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1.2;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -252,6 +250,8 @@
   display: grid;
   grid-template-columns: repeat(3, fit-content(282px));
   grid-template-rows: repeat(2, fit-content(361px));
+  grid-auto-columns: fit-content(282px);
+  grid-auto-rows: fit-content(361px);
   column-gap: 17px;
   row-gap: 20px;
 }
@@ -283,7 +283,7 @@
   margin: 0;
   font-weight: 900;
   font-size: 24px;
-  line-height: 29px;
+  line-height: 1.2;
   color: #000000;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -301,12 +301,12 @@
   cursor: pointer;
 }
 
-.cards__like-button_active {
-  background-image: url("images/LikeButtonActive.svg");
-}
-
 .cards__like-button:hover {
   opacity: 0.6;
+}
+
+.cards__like-button_active {
+  background-image: url("images/LikeButtonActive.svg");
 }
 
 .footer {
@@ -320,7 +320,7 @@
   margin: 0;
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 1.2;
   color: #545454;
 }
 
@@ -351,18 +351,18 @@
 
   .popup__title {
     font-size: 18px;
-    line-height: 22px;
+    line-height: 1.2;
     margin-bottom: 65px;
   }
 
-  .popup__input_content_description {
+  .popup__input_content_job {
     margin-bottom: 45px;
   }
 
   .popup__save-button {
     min-height: 46px;
     font-size: 14px;
-    line-height: 17px;
+    line-height: 1.2;
   }
 
   .popup__close-button {
@@ -392,7 +392,7 @@
 
   .profile__name {
     font-size: 27px;
-    line-height: 33px;
+    line-height: 1.2;
     max-width: 220px;
   }
 
@@ -402,9 +402,9 @@
     top: 2px;
   }
 
-  .profile__description {
+  .profile__job {
     font-size: 14px;
-    line-height: 17px;
+    line-height: 1.2;
     max-width: 220px;
   }
 
@@ -431,6 +431,6 @@
 
   .footer__copyright {
     font-size: 14px;
-    line-height: 17px;
+    line-height: 1.2;
   }
 }

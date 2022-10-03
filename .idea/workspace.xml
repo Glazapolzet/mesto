@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4566cbad-091f-4997-9953-a85884d862d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Close Icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/images/CloseButton.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/fonts.css" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/fonts.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -72,7 +73,9 @@
       <workItem from="1664630601107" duration="15632000" />
       <workItem from="1664665240745" duration="4702000" />
       <workItem from="1664670122878" duration="6868000" />
-      <workItem from="1664706932342" duration="22234000" />
+      <workItem from="1664706932342" duration="23119000" />
+      <workItem from="1664788180665" duration="2248000" />
+      <workItem from="1664791351762" duration="2872000" />
     </task>
     <servers />
   </component>
