@@ -12,6 +12,7 @@
   line-height: 1.2;
   color: #ffffff;
   cursor: pointer;
+  transition: opacity 0.3s ease-out;
 }
 
 .popup__save-button:hover {
@@ -22,6 +23,5 @@
   .popup__save-button {
     min-height: 46px;
     font-size: 14px;
-    line-height: 1.2;
   }
 }
