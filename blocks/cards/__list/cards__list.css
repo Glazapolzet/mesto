@@ -4,9 +4,9 @@
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, fit-content(282px));
-  grid-template-rows: repeat(2, fit-content(361px));
+  grid-template-rows: repeat(2, 361px);
   grid-auto-columns: fit-content(282px);
-  grid-auto-rows: fit-content(361px);
+  grid-auto-rows: 361px;
   column-gap: 17px;
   row-gap: 20px;
 }
@@ -15,7 +15,7 @@
   .cards__list {
     grid-auto-flow: row;
     grid-template-columns: fit-content(282px);
-    grid-template-rows: repeat(6, fit-content(361px));
+    grid-template-rows: repeat(6, 361px);
     justify-content: center;
   }
 }
