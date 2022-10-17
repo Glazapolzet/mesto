@@ -1,5 +1,7 @@
 const page = document.querySelector('.page');
+const cardTemplate = document.querySelector('#card').content;
 
+const cardsList = page.querySelector('.cards__list');
 const profile = page.querySelector('.profile');
 const editProfilePopup = page.querySelector('.popup_use_edit-profile');
 const addPlacePopup = page.querySelector('.popup_use_add-place');
@@ -20,8 +22,6 @@ const inputPlaceTitle = addPlacePopup.querySelectorAll('.popup__input')[0];
 const inputPlaceLink = addPlacePopup.querySelectorAll('.popup__input')[1];
 
 //исходные карточки
-const cardTemplate = document.querySelector('#card').content;
-const cardsList = page.querySelector('.cards__list');
 const initialCards = [
     {
         name: 'Архыз',
@@ -104,11 +104,14 @@ function createCard (item) {
     
     const cardImage = card.querySelector('.cards__image');
     const cardTitle = card.querySelector('.cards__title');
+    const likeButton = card.querySelector('.cards__like-button');
     
     cardImage.src = item.link;
     cardImage.alt = item.name;
     
     cardTitle.textContent = item.name;
+    
+    likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('cards__like-button_active'));
     
     cardsList.append(card);
 }
