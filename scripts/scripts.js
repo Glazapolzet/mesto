@@ -50,12 +50,8 @@ const initialCards = [
 ];
 
 
-function showPopup (popupName) {
-  popupName.classList.add('popup_opened');
-}
-
-function closePopup (popupName) {
-  popupName.classList.remove('popup_opened');
+function changePopupVisibility (popupName) {
+  popupName.classList.toggle('popup_opened');
 }
 
 //edit popup
@@ -63,11 +59,11 @@ const showEditProfilePopup = () => {
   inputUserName.value = userName.textContent;
   inputUserJob.value = userJob.textContent;
 
-  showPopup(editProfilePopup);
+  changePopupVisibility(editProfilePopup);
 }
 
 const closeEditProfilePopup = () => {
-  closePopup(editProfilePopup);
+  changePopupVisibility(editProfilePopup);
 }
 
 function popupEditProfileFormSubmitHandler (evt) {
@@ -81,11 +77,11 @@ function popupEditProfileFormSubmitHandler (evt) {
 
 //add popup
 const showAddPlacePopup = () => {
-  showPopup(addPlacePopup);
+  changePopupVisibility(addPlacePopup);
 }
 
 const closeAddPlacePopup = () => {
-  closePopup(addPlacePopup);
+  changePopupVisibility(addPlacePopup);
 }
 
 function popupAddPlaceFormSubmitHandler (evt) {
