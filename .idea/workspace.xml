@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4566cbad-091f-4997-9953-a85884d862d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/cards/__image/cards__image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/cards/__image/cards__image.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blocks/cards/__list/cards__list.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/cards/__list/cards__list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/profile/__add-button/profile__add-button.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/profile/__add-place-button/profile__add-place-button.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/profile/__edit-button/profile__edit-button.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/profile/__edit-user-button/profile__edit-user-button.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scripts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +106,7 @@
       <workItem from="1665162085396" duration="166000" />
       <workItem from="1665995674682" duration="264000" />
       <workItem from="1665995953463" duration="5199000" />
-      <workItem from="1666004303087" duration="821000" />
+      <workItem from="1666004303087" duration="9421000" />
     </task>
     <servers />
   </component>

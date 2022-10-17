@@ -18,26 +18,38 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
           </div>
-          <button type="button" class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-user-button"></button>
         </div>
-        <button type="button" class="profile__add-button"></button>
+        <button type="button" class="profile__add-place-button"></button>
       </section>
       <section class="cards">
         <ul class="cards__list">
-
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <section class="popup">
+    <section class="popup popup_use_edit-profile">
       <div class="popup__wrapper">
         <form name="form" class="popup__form">
           <fieldset class="popup__input-container">
             <legend class="popup__title">Редактировать профиль</legend>
             <input name="user-name" type="text" class="popup__input">
             <input name="user-job" type="text" class="popup__input">
+          </fieldset>
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+        <button type="button" class="popup__close-button"></button>
+      </div>
+    </section>
+    <section class="popup popup_use_add-place">
+      <div class="popup__wrapper">
+        <form name="form" class="popup__form">
+          <fieldset class="popup__input-container">
+            <legend class="popup__title">Новое место</legend>
+            <input name="user-name" type="text" class="popup__input" placeholder="Название">
+            <input name="user-job" type="text" class="popup__input" placeholder="Ссылка на картинку">
           </fieldset>
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
