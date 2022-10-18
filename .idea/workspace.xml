@@ -7,6 +7,12 @@
     <list default="true" id="4566cbad-091f-4997-9953-a85884d862d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blocks/cards/__image/cards__image.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/cards/__image/cards__image.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/cards/__list/cards__list.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/cards/__list/cards__list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/cards/cards.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/cards/cards.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__picture-caption/popup__picture-caption.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/picture-modal/__caption/picture-modal__caption.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__picture-container/popup__picture-container.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/picture-modal/__container/picture-modal__container.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__picture-wrapper/popup__picture-wrapper.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/picture-modal/__picture-wrapper/picture-modal__picture-wrapper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__picture/popup__picture.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/picture-modal/__picture/picture-modal__picture.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scripts.js" afterDir="false" />
@@ -57,14 +63,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/blocks/show-picture-modal" />
       <recent name="C:\Users\User\dev\project-mesto\scripts" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html (1)">
-    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Mesto/index.html" useBuiltInWebServerPort="true">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/project-mesto/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/project-mesto/index.html" useBuiltInWebServerPort="true">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Mesto/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="scripts.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/scripts/scripts.js" working-dir="$PROJECT_DIR$">
@@ -109,7 +116,7 @@
       <workItem from="1666035549539" duration="4943000" />
       <workItem from="1666044228361" duration="1260000" />
       <workItem from="1666075399154" duration="5403000" />
-      <workItem from="1666110060199" duration="813000" />
+      <workItem from="1666110060199" duration="20120000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,9 @@
+.picture-modal__caption {
+  max-width: 180px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+}

@@ -3,23 +3,27 @@ const cardTemplate = document.querySelector('#card').content;
 
 const cardsList = page.querySelector('.cards__list');
 const profile = page.querySelector('.profile');
+const pictureModal = page.querySelector('.picture-modal');
+
 const editProfilePopup = page.querySelector('.popup_use_edit-profile');
 const addPlacePopup = page.querySelector('.popup_use_add-place');
 
 const editUserButton = profile.querySelector('.profile__edit-user-button');
 const addPlaceButton = profile.querySelector('.profile__add-place-button');
+
 const userName = profile.querySelector('.profile__name');
 const userJob = profile.querySelector('.profile__job');
 
-const editProfilePopupCloseButton = editProfilePopup.querySelector('.popup__close-button');
 const editProfilePopupForm = editProfilePopup.querySelector('.popup__form');
 const inputUserName = editProfilePopup.querySelectorAll('.popup__input')[0];
 const inputUserJob = editProfilePopup.querySelectorAll('.popup__input')[1];
 
-const addPlacePopupCloseButton = addPlacePopup.querySelector('.popup__close-button');
 const addPlacePopupForm = addPlacePopup.querySelector('.popup__form');
 const inputPlaceTitle = addPlacePopup.querySelectorAll('.popup__input')[0];
 const inputPlaceLink = addPlacePopup.querySelectorAll('.popup__input')[1];
+
+const picture = pictureModal.querySelector('.picture-modal__picture');
+const pictureCaption = pictureModal.querySelector('.picture-modal__caption');
 
 //исходные карточки
 const initialCards = [
@@ -53,8 +57,17 @@ function changePopupVisibility (popupName) {
   popupName.classList.toggle('popup_opened');
 }
 
+const closeButtonHandler = (popupName) => {
+  const closeButton = popupName.querySelector('.popup__close-button');
+  closeButton.addEventListener('click', () => changePopupVisibility(popupName));
+}
+
+closeButtonHandler(editProfilePopup);
+closeButtonHandler(addPlacePopup);
+closeButtonHandler(pictureModal);
+
 //edit popup
-function popupEditProfileFormSubmitHandler (evt) {
+function editProfilePopupFormSubmitHandler (evt) {
   evt.preventDefault();
 
   userName.textContent = inputUserName.value;
@@ -64,14 +77,14 @@ function popupEditProfileFormSubmitHandler (evt) {
 }
 
 //add popup
-function popupAddPlaceFormSubmitHandler (evt) {
+function addPlacePopupFormSubmitHandler (evt) {
   evt.preventDefault();
   
   const newPlace = {};
   newPlace.name = inputPlaceTitle.value;
   newPlace.link = inputPlaceLink.value;
 
-  createCard(newPlace);
+  cardsList.prepend(createCard(newPlace));
 
   changePopupVisibility(addPlacePopup);
   
@@ -95,11 +108,17 @@ function createCard (item) {
 
   likeButton.addEventListener('click', evt => evt.target.classList.toggle('cards__like-button_active'));
   trashButton.addEventListener('click', evt => evt.target.parentElement.remove());
+  cardImage.addEventListener('click', () => {
+    picture.src = cardImage.src;
+    pictureCaption.textContent = cardTitle.textContent;
+    
+    changePopupVisibility(pictureModal);
+  })
   
-  cardsList.append(card);
+  return card;
 }
 
-initialCards.forEach(createCard);
+initialCards.forEach(item => cardsList.append(createCard(item)));
 
 //обработчики попапов
 editUserButton.addEventListener('click', () => {
@@ -108,9 +127,7 @@ editUserButton.addEventListener('click', () => {
 
   changePopupVisibility(editProfilePopup);
 });
-editProfilePopupCloseButton.addEventListener('click', () => changePopupVisibility(editProfilePopup));
-editProfilePopupForm.addEventListener('submit', popupEditProfileFormSubmitHandler);
+editProfilePopupForm.addEventListener('submit', editProfilePopupFormSubmitHandler);
 
 addPlaceButton.addEventListener('click', () => changePopupVisibility(addPlacePopup));
-addPlacePopupCloseButton.addEventListener('click', () => changePopupVisibility(addPlacePopup));
-addPlacePopupForm.addEventListener('submit', popupAddPlaceFormSubmitHandler);
+addPlacePopupForm.addEventListener('submit', addPlacePopupFormSubmitHandler);

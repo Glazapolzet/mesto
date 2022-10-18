@@ -31,8 +31,7 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <!--TODO: сделать каждый попап отдельным блоком-->
-    <section class="popup popup_use_edit-profile">
+    <div class="popup popup_use_edit-profile">
       <div class="popup__wrapper">
         <form name="form" class="popup__form">
           <fieldset class="popup__input-container">
@@ -44,9 +43,9 @@
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
-    </section>
+    </div>
 
-    <section class="popup popup_use_add-place">
+    <div class="popup popup_use_add-place">
       <div class="popup__wrapper">
         <form name="form" class="popup__form">
           <fieldset class="popup__input-container">
@@ -58,17 +57,17 @@
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
-    </section>
+    </div>
 
-    <section class="popup popup_use_show-place-picture popup_opened">
-      <div class="popup__picture-container">
-        <figure class="popup__picture-wrapper">
-          <img src="images/ivanovo.jpg" alt="" class="popup__picture">
-          <figcaption class="popup__picture-caption">Молчат домааааааааааааыыыаыааыпыпыпппыыппыпыпыпыыпыпыпыпыпыпыпыпыпыппыпыыпып</figcaption>
+    <div class="popup picture-modal">
+      <div class="picture-modal__container">
+        <figure class="picture-modal__picture-wrapper">
+          <img src="" alt="" class="picture-modal__picture">
+          <figcaption class="picture-modal__caption"></figcaption>
         </figure>
-        <button type="button" class="popup__close-button"></button>
+        <button type="button" class="popup__close-button picture-modal__close-button"></button>
       </div>
-    </section>
+    </div>
 
     <template id="card">
       <li class="cards__item">
@@ -80,6 +79,7 @@
         <div class="cards__trash-button"></div>
       </li>
     </template>
+
     <script src="scripts/scripts.js"></script>
   </body>
 </html>
