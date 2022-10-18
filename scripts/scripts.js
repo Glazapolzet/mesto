@@ -49,41 +49,21 @@ const initialCards = [
   }
 ];
 
-
 function changePopupVisibility (popupName) {
   popupName.classList.toggle('popup_opened');
 }
 
 //edit popup
-const showEditProfilePopup = () => {
-  inputUserName.value = userName.textContent;
-  inputUserJob.value = userJob.textContent;
-
-  changePopupVisibility(editProfilePopup);
-}
-
-const closeEditProfilePopup = () => {
-  changePopupVisibility(editProfilePopup);
-}
-
 function popupEditProfileFormSubmitHandler (evt) {
   evt.preventDefault();
 
   userName.textContent = inputUserName.value;
   userJob.textContent = inputUserJob.value;
 
-  closeEditProfilePopup();
+  changePopupVisibility(editProfilePopup);
 }
 
 //add popup
-const showAddPlacePopup = () => {
-  changePopupVisibility(addPlacePopup);
-}
-
-const closeAddPlacePopup = () => {
-  changePopupVisibility(addPlacePopup);
-}
-
 function popupAddPlaceFormSubmitHandler (evt) {
   evt.preventDefault();
   
@@ -92,8 +72,8 @@ function popupAddPlaceFormSubmitHandler (evt) {
   newPlace.link = inputPlaceLink.value;
 
   createCard(newPlace);
-  
-  closeAddPlacePopup();
+
+  changePopupVisibility(addPlacePopup);
   
   inputPlaceTitle.value = '';
   inputPlaceLink.value = '';
@@ -113,20 +93,24 @@ function createCard (item) {
 
   cardTitle.textContent = item.name;
 
-  likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('cards__like-button_active'));
-  trashButton.addEventListener('click', (evt) => {
-    evt.target.parentElement.remove();
-  })
+  likeButton.addEventListener('click', evt => evt.target.classList.toggle('cards__like-button_active'));
+  trashButton.addEventListener('click', evt => evt.target.parentElement.remove());
   
-  cardsList.append(card);
+  cardsList.prepend(card);
 }
 
 initialCards.forEach(createCard);
 
-editUserButton.addEventListener('click', showEditProfilePopup);
-editProfilePopupCloseButton.addEventListener('click', closeEditProfilePopup);
+//обработчики попапов
+editUserButton.addEventListener('click', () => {
+  inputUserName.value = userName.textContent;
+  inputUserJob.value = userJob.textContent;
+
+  changePopupVisibility(editProfilePopup);
+});
+editProfilePopupCloseButton.addEventListener('click', () => changePopupVisibility(editProfilePopup));
 editProfilePopupForm.addEventListener('submit', popupEditProfileFormSubmitHandler);
 
-addPlaceButton.addEventListener('click', showAddPlacePopup);
-addPlacePopupCloseButton.addEventListener('click', closeAddPlacePopup);
+addPlaceButton.addEventListener('click', () => changePopupVisibility(addPlacePopup));
+addPlacePopupCloseButton.addEventListener('click', () => changePopupVisibility(addPlacePopup));
 addPlacePopupForm.addEventListener('submit', popupAddPlaceFormSubmitHandler);
