@@ -1,0 +1,7 @@
+.popup__picture-caption {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+}

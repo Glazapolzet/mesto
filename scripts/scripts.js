@@ -96,7 +96,7 @@ function createCard (item) {
   likeButton.addEventListener('click', evt => evt.target.classList.toggle('cards__like-button_active'));
   trashButton.addEventListener('click', evt => evt.target.parentElement.remove());
   
-  cardsList.prepend(card);
+  cardsList.append(card);
 }
 
 initialCards.forEach(createCard);
