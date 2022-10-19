@@ -25,7 +25,6 @@ const inputPlaceLink = addPlacePopup.querySelectorAll('.popup__input')[1];
 const picture = pictureModal.querySelector('.picture-modal__picture');
 const pictureCaption = pictureModal.querySelector('.picture-modal__caption');
 
-//исходные карточки
 const initialCards = [
   {
     name: 'Архыз',
@@ -57,16 +56,11 @@ function changePopupVisibility (popupName) {
   popupName.classList.toggle('popup_opened');
 }
 
-const closeButtonHandler = (popupName) => {
-  const closeButton = popupName.querySelector('.popup__close-button');
-  closeButton.addEventListener('click', () => changePopupVisibility(popupName));
+function closeButtonsAddHandler () {
+  const closeButtons = page.querySelectorAll('.popup__close-button');
+  closeButtons.forEach(closeButton => closeButton.addEventListener('click', () => changePopupVisibility(closeButton.closest('.popup'))));
 }
 
-closeButtonHandler(editProfilePopup);
-closeButtonHandler(addPlacePopup);
-closeButtonHandler(pictureModal);
-
-//edit popup
 function editProfilePopupFormSubmitHandler (evt) {
   evt.preventDefault();
 
@@ -76,7 +70,6 @@ function editProfilePopupFormSubmitHandler (evt) {
   changePopupVisibility(editProfilePopup);
 }
 
-//add popup
 function addPlacePopupFormSubmitHandler (evt) {
   evt.preventDefault();
   
@@ -92,7 +85,6 @@ function addPlacePopupFormSubmitHandler (evt) {
   inputPlaceLink.value = '';
 }
 
-//добавление карточек
 function createCard (item) {
   const card = cardTemplate.querySelector('.cards__item').cloneNode(true);
 
@@ -118,9 +110,10 @@ function createCard (item) {
   return card;
 }
 
-initialCards.forEach(item => cardsList.append(createCard(item)));
 
-//обработчики попапов
+initialCards.forEach(item => cardsList.append(createCard(item)));
+closeButtonsAddHandler();
+
 editUserButton.addEventListener('click', () => {
   inputUserName.value = userName.textContent;
   inputUserJob.value = userJob.textContent;
