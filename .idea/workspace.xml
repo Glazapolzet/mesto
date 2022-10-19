@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4566cbad-091f-4997-9953-a85884d862d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Dombai.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Elbrus.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/Karachaevsk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/ivanovo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__title/popup__title.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__title/popup__title.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scripts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +61,10 @@
       <recent name="C:\Users\User\dev\project-mesto\scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Mesto/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/project-mesto/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -74,6 +76,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html (1)" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Node.js.scripts.js" />
       </list>
@@ -111,7 +114,7 @@
       <workItem from="1666044228361" duration="1260000" />
       <workItem from="1666075399154" duration="5403000" />
       <workItem from="1666110060199" duration="21023000" />
-      <workItem from="1666166987980" duration="2827000" />
+      <workItem from="1666166987980" duration="6579000" />
     </task>
     <servers />
   </component>

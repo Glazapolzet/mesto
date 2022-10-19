@@ -15,12 +15,12 @@ const userName = profile.querySelector('.profile__name');
 const userJob = profile.querySelector('.profile__job');
 
 const editProfilePopupForm = editProfilePopup.querySelector('.popup__form');
-const inputUserName = editProfilePopup.querySelectorAll('.popup__input')[0];
-const inputUserJob = editProfilePopup.querySelectorAll('.popup__input')[1];
+const inputUserName = editProfilePopup.querySelector('.popup__input_content_user-name');
+const inputUserJob = editProfilePopup.querySelector('.popup__input_content_user-job');
 
 const addPlacePopupForm = addPlacePopup.querySelector('.popup__form');
-const inputPlaceTitle = addPlacePopup.querySelectorAll('.popup__input')[0];
-const inputPlaceLink = addPlacePopup.querySelectorAll('.popup__input')[1];
+const inputPlaceTitle = addPlacePopup.querySelector('.popup__input_content_place-title');
+const inputPlaceLink = addPlacePopup.querySelector('.popup__input_content_place-link');
 
 const picture = pictureModal.querySelector('.picture-modal__picture');
 const pictureCaption = pictureModal.querySelector('.picture-modal__caption');

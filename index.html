@@ -31,35 +31,33 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <div class="popup popup_use_edit-profile">
+    <section class="popup popup_use_edit-profile">
       <div class="popup__wrapper">
         <form name="form" class="popup__form">
           <fieldset class="popup__input-container">
             <legend class="popup__title">Редактировать профиль</legend>
-            <input name="user-name" type="text" class="popup__input">
-            <input name="user-job" type="text" class="popup__input">
+            <input name="user-name" type="text" class="popup__input popup__input_content_user-name">
+            <input name="user-job" type="text" class="popup__input popup__input_content_user-job">
           </fieldset>
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
-    </div>
-
-    <div class="popup popup_use_add-place">
+    </section>
+    <section class="popup popup_use_add-place">
       <div class="popup__wrapper">
         <form name="form" class="popup__form">
           <fieldset class="popup__input-container">
             <legend class="popup__title">Новое место</legend>
-            <input name="place-title" type="text" class="popup__input" placeholder="Название">
-            <input name="place-link" type="text" class="popup__input" placeholder="Ссылка на картинку">
+            <input name="place-title" type="text" class="popup__input popup__input_content_place-title" placeholder="Название">
+            <input name="place-link" type="text" class="popup__input popup__input_content_place-link" placeholder="Ссылка на картинку">
           </fieldset>
           <button type="submit" class="popup__save-button">Создать</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
-    </div>
-
-    <div class="popup picture-modal">
+    </section>
+    <section class="popup picture-modal">
       <div class="picture-modal__container">
         <figure class="picture-modal__picture-wrapper">
           <img src="" alt="" class="picture-modal__picture">
@@ -67,7 +65,7 @@
         </figure>
         <button type="button" class="popup__close-button picture-modal__close-button"></button>
       </div>
-    </div>
+    </section>
 
     <template id="card">
       <li class="cards__item">
@@ -79,7 +77,6 @@
         <div class="cards__trash-button"></div>
       </li>
     </template>
-
     <script src="scripts/scripts.js"></script>
   </body>
 </html>
