@@ -39,7 +39,7 @@ function closeButtonsAddHandler () {
   buttonsClose.forEach(buttonClose => buttonClose.addEventListener('click', () => closePopup(buttonClose.closest('.popup'))));
 }
 
-function editProfilePopupFormSubmitHandler (evt) {
+function editProfileFormSubmitHandler (evt) {
   evt.preventDefault();
 
   userName.textContent = inputUserName.value;
@@ -48,9 +48,9 @@ function editProfilePopupFormSubmitHandler (evt) {
   closePopup(popupEditProfile);
 }
 
-function addPlacePopupFormSubmitHandler (evt) {
+function addPlaceFormSubmitHandler (evt) {
   evt.preventDefault();
-  
+
   const newPlace = {};
   newPlace.name = inputPlaceTitle.value;
   newPlace.link = inputPlaceLink.value;
@@ -96,7 +96,30 @@ buttonEditUser.addEventListener('click', () => {
 
   showPopup(popupEditProfile);
 });
-popupFormEditProfile.addEventListener('submit', editProfilePopupFormSubmitHandler);
 
-buttonAddPlace.addEventListener('click', () => showPopup(popupAddPlace));
-popupFormAddPlace.addEventListener('submit', addPlacePopupFormSubmitHandler);
+const closeByOverlayClick = (evt) => {
+  if(evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
+}
+
+//закрытие попапа кликом на оверлей (вынести в отдельную функцию)
+popupEditProfile.addEventListener('click', closeByOverlayClick);
+popupAddPlace.addEventListener('click', closeByOverlayClick);
+pictureModal.addEventListener('click', closeByOverlayClick);
+
+
+//закрытие попапа нажатием Esc
+document.addEventListener('keydown', (evt) => {
+  if(evt.key === 'Escape') {
+    closePopup(page.querySelector('.popup_opened'));
+  }
+})
+
+popupFormEditProfile.addEventListener('submit', editProfileFormSubmitHandler);
+
+buttonAddPlace.addEventListener('click', () => {
+  popupFormAddPlace.reset();
+  showPopup(popupAddPlace);
+});
+popupFormAddPlace.addEventListener('submit', addPlaceFormSubmitHandler);

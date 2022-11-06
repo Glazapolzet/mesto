@@ -33,30 +33,53 @@
 
     <section class="popup popup_use_edit-profile">
       <div class="popup__wrapper">
-        <form name="form" class="popup__form">
+        <form name="edit-profile" class="popup__form" novalidate>
           <fieldset class="popup__input-container">
-            <legend class="popup__title">Редактировать профиль</legend>
-            <input name="user-name" type="text" class="popup__input popup__input_content_user-name">
-            <input name="user-job" type="text" class="popup__input popup__input_content_user-job">
+            <label class="popup__title">Редактировать профиль</label>
+            <input id="name-input"
+                   type="text"
+                   class="popup__input popup__input_content_user-name"
+                   minlength="2" maxlength="40"
+                   required>
+            <span class="name-input-error popup__input-error"></span>
+            <input id="job-input"
+                   type="text"
+                   class="popup__input popup__input_content_user-job"
+                   minlength="2" maxlength="200"
+                   required>
+            <span class="job-input-error popup__input-error"></span>
           </fieldset>
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
     </section>
+
     <section class="popup popup_use_add-place">
       <div class="popup__wrapper">
-        <form name="form" class="popup__form">
+        <form name="add-place" class="popup__form" novalidate>
           <fieldset class="popup__input-container">
             <legend class="popup__title">Новое место</legend>
-            <input name="place-title" type="text" class="popup__input popup__input_content_place-title" placeholder="Название">
-            <input name="place-link" type="text" class="popup__input popup__input_content_place-link" placeholder="Ссылка на картинку">
+            <input id="title-input"
+                   type="text"
+                   class="popup__input popup__input_content_place-title"
+                   placeholder="Название"
+                   minlength="2" maxlength="30"
+                   required>
+            <span class="title-input-error popup__input-error"></span>
+            <input name="link-input"
+                   type="url"
+                   class="popup__input popup__input_content_place-link"
+                   placeholder="Ссылка на картинку"
+                   required>
+            <span class="link-input-error popup__input-error"></span>
           </fieldset>
           <button type="submit" class="popup__save-button">Создать</button>
         </form>
         <button type="button" class="popup__close-button"></button>
       </div>
     </section>
+
     <section class="popup picture-modal">
       <div class="picture-modal__container">
         <figure class="picture-modal__picture-wrapper">

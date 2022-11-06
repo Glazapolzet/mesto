@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4566cbad-091f-4997-9953-a85884d862d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__input/popup__input.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__input/popup__input.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__save-button/popup__save-button.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__save-button/popup__save-button.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__wrapper/popup__wrapper.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__wrapper/popup__wrapper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scripts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -28,7 +35,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2FWwpxOmefR2H5rYp7vrIa3oQ6B" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -53,6 +60,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../OIB" />
       <recent name="$PROJECT_DIR$/blocks/show-picture-modal" />
       <recent name="C:\Users\User\dev\project-mesto\scripts" />
     </key>
@@ -111,7 +119,13 @@
       <workItem from="1666075399154" duration="5403000" />
       <workItem from="1666110060199" duration="21023000" />
       <workItem from="1666166987980" duration="8331000" />
-      <workItem from="1666198750778" duration="3133000" />
+      <workItem from="1666198750778" duration="4332000" />
+      <workItem from="1666305781633" duration="1000" />
+      <workItem from="1666306918067" duration="3000" />
+      <workItem from="1666381000641" duration="108000" />
+      <workItem from="1666381116033" duration="65000" />
+      <workItem from="1667334525343" duration="796000" />
+      <workItem from="1667732373359" duration="14998000" />
     </task>
     <servers />
   </component>

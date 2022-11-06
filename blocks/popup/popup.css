@@ -13,4 +13,5 @@
   overflow: hidden;
   z-index: 1;
   transition: visibility 0.4s, opacity 0.4s ease-out;
+  cursor: pointer;
 }

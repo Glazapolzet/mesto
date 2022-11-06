@@ -8,6 +8,7 @@
   justify-content: center;
   background-color: #ffffff;
   border-radius: 10px;
+  cursor: default;
 }
 
 @media screen and (max-width: 767px) {
