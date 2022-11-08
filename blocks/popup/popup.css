@@ -12,10 +12,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   z-index: 1;
-<<<<<<< HEAD
-  transition: visibility 0.4s, opacity 0.4s ease-out;
-=======
   transition: visibility 0.3s, opacity 0.3s ease-out;
->>>>>>> develop
   cursor: pointer;
 }

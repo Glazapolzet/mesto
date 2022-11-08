@@ -4,13 +4,6 @@
   font-size: 12px;
   line-height: 1.25;
   color: #FF0000;
-<<<<<<< HEAD
-  margin-bottom: 13px;
-}
-
-.popup__input-error:nth-last-of-type(1) {
-  margin-bottom: 31px;
-=======
   position: relative;
   bottom: 30px;
   margin-bottom: -15px;
@@ -19,16 +12,11 @@
 .popup__input-error:nth-last-of-type(1) {
   bottom: 48px;
   margin-bottom: -30px;
->>>>>>> develop
 }
 
 @media screen and (max-width: 767px) {
   .popup__input-error:nth-last-of-type(1) {
-<<<<<<< HEAD
-    margin-bottom: 28px;
-=======
     bottom: 45px;
     margin-bottom: -30px;
->>>>>>> develop
   }
 }

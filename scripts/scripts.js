@@ -121,38 +121,10 @@ buttonEditUser.addEventListener('click', () => {
   showPopup(popupEditProfile);
 });
 
-<<<<<<< HEAD
-const closeByOverlayClick = (evt) => {
-  if(evt.target.classList.contains('popup_opened')) {
-    closePopup(evt.target);
-  }
-}
-
-//закрытие попапа кликом на оверлей (вынести в отдельную функцию)
-popupEditProfile.addEventListener('click', closeByOverlayClick);
-popupAddPlace.addEventListener('click', closeByOverlayClick);
-pictureModal.addEventListener('click', closeByOverlayClick);
-
-
-//закрытие попапа нажатием Esc
-document.addEventListener('keydown', (evt) => {
-  if(evt.key === 'Escape') {
-    closePopup(page.querySelector('.popup_opened'));
-  }
-})
-
-popupFormEditProfile.addEventListener('submit', editProfileFormSubmitHandler);
-
-=======
->>>>>>> develop
 buttonAddPlace.addEventListener('click', () => {
   popupFormAddPlace.reset();
   showPopup(popupAddPlace);
 });
-<<<<<<< HEAD
-popupFormAddPlace.addEventListener('submit', addPlaceFormSubmitHandler);
-=======
 
 closeButtonsAddHandler();
 
->>>>>>> develop
