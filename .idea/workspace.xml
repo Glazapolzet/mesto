@@ -4,8 +4,23 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="4566cbad-091f-4997-9953-a85884d862d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="4566cbad-091f-4997-9953-a85884d862d5" name="Changes" comment="style: ошибки полей ввода, неактивная кнопка сабмита формы">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/picture-modal/__container/picture-modal__container.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/picture-modal/__container/picture-modal__container.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__form/popup__form.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__form/popup__form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__input-error/popup__input-error.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__input-error/popup__input-error.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__input/_type/popup__input_type_error.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__input/_type/popup__input_type_error.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__title/popup__title.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__title/popup__title.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/__wrapper/popup__wrapper.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/__wrapper/popup__wrapper.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/_opened/popup_opened.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blocks/popup/popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/blocks/popup/popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scripts.js" afterDir="false" />
+>>>>>>> develop
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +63,7 @@
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -113,6 +128,7 @@
       <workItem from="1666075399154" duration="5403000" />
       <workItem from="1666110060199" duration="21023000" />
       <workItem from="1666166987980" duration="8331000" />
+<<<<<<< HEAD
       <workItem from="1666198750778" duration="4332000" />
       <workItem from="1666305781633" duration="1000" />
       <workItem from="1666306918067" duration="3000" />
@@ -120,6 +136,12 @@
       <workItem from="1666381116033" duration="65000" />
       <workItem from="1667334525343" duration="796000" />
       <workItem from="1667732373359" duration="14998000" />
+=======
+      <workItem from="1666198750778" duration="3133000" />
+      <workItem from="1667820541087" duration="7503000" />
+      <workItem from="1667834636327" duration="7395000" />
+      <workItem from="1667891168323" duration="339000" />
+>>>>>>> develop
     </task>
     <servers />
   </component>
@@ -131,7 +153,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -158,7 +192,11 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <MESSAGE value="style: ошибки полей ввода, неактивная кнопка сабмита формы" />
     <option name="LAST_COMMIT_MESSAGE" value="style: ошибки полей ввода, неактивная кнопка сабмита формы" />
+=======
+    <MESSAGE value="feat: ошибка заполнения полей ввода, неактивная кнопка сабмита формы" />
+>>>>>>> develop
   </component>
 </project>
