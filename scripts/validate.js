@@ -21,6 +21,11 @@ const hideInputError = (form, formInput) => {
   errorInput.textContent = '';
 }
 
+const resetValidationErrors = (form) => {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+  inputList.forEach(input => hideInputError(form, input));
+}
+
 const isValid = (form, formInput) => {
   if (!formInput.validity.valid) {
     showInputError(form, formInput, formInput.validationMessage);
@@ -48,7 +53,6 @@ const toggleButtonState = (inputList, button) => {
 const setEventListeners = (form) => {
   const inputList = Array.from(form.querySelectorAll(config.inputSelector));
   const button = form.querySelector(config.submitButtonSelector);
-  toggleButtonState(inputList, button);
 
   inputList.forEach(formInput => {
     formInput.addEventListener('input', () => {
@@ -56,6 +60,10 @@ const setEventListeners = (form) => {
       toggleButtonState(inputList, button);
     });
   });
+
+  form.addEventListener('reset', () => {
+    toggleButtonState(inputList, button);
+  })
 }
 
 const enableValidation = (config) => {

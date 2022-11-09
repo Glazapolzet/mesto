@@ -18,6 +18,7 @@ const userJob = profile.querySelector('.profile__job');
 const popupFormEditProfile = popupEditProfile.querySelector('.popup__form');
 const inputUserName = popupEditProfile.querySelector('.popup__input_content_user-name');
 const inputUserJob = popupEditProfile.querySelector('.popup__input_content_user-job');
+const buttonSaveUser = popupEditProfile.querySelector('.popup__save-button');
 
 const popupFormAddPlace = popupAddPlace.querySelector('.popup__form');
 const inputPlaceTitle = popupAddPlace.querySelector('.popup__input_content_place-title');
@@ -35,10 +36,6 @@ function showPopup (popupName) {
 function closePopup (popupName) {
   document.removeEventListener('keydown', closeByEsc);
   popupName.classList.remove('popup_opened');
-  if (!popupName.classList.contains('picture-modal')) {
-    const inputList = Array.from(popupName.querySelectorAll('.popup__input'));
-    inputList.forEach(input => hideInputError(popupName, input));
-  }
 }
 
 function closeButtonsAddHandler () {
@@ -115,13 +112,19 @@ popupFormEditProfile.addEventListener('submit', editProfileFormSubmitHandler);
 popupFormAddPlace.addEventListener('submit', addPlaceFormSubmitHandler);
 
 buttonEditUser.addEventListener('click', () => {
+  resetValidationErrors(popupFormEditProfile);
+  
   inputUserName.value = userName.textContent;
   inputUserJob.value = userJob.textContent;
+
+  buttonSaveUser.classList.remove('popup__save-button_disabled');
+  buttonSaveUser.removeAttribute("disabled");
 
   showPopup(popupEditProfile);
 });
 
 buttonAddPlace.addEventListener('click', () => {
+  resetValidationErrors(popupFormAddPlace);
   popupFormAddPlace.reset();
   showPopup(popupAddPlace);
 });

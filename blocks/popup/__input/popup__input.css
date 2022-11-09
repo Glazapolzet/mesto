@@ -8,6 +8,7 @@
   font-size: 14px;
   line-height: 1.2;
   color: #000000;
+  min-height: 15px;
 }
 
 .popup__input:focus {

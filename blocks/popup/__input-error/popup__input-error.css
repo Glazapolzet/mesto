@@ -4,19 +4,15 @@
   font-size: 12px;
   line-height: 1.25;
   color: #FF0000;
-  position: relative;
-  bottom: 30px;
-  margin-bottom: -15px;
+  min-height: 30px;
 }
 
 .popup__input-error:nth-last-of-type(1) {
-  bottom: 48px;
-  margin-bottom: -30px;
+  min-height: 48px;
 }
 
 @media screen and (max-width: 767px) {
   .popup__input-error:nth-last-of-type(1) {
-    bottom: 45px;
-    margin-bottom: -30px;
+    min-height: 45px;
   }
 }
