@@ -18,9 +18,9 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job">Исследователь океана</p>
           </div>
-          <button type="button" class="profile__edit-user-button"></button>
+          <button aria-label="Изменить данные профиля" type="button" class="profile__edit-user-button"></button>
         </div>
-        <button type="button" class="profile__add-place-button"></button>
+        <button aria-label="Добавить изображение" type="button" class="profile__add-place-button"></button>
       </section>
       <section class="cards">
         <ul class="cards__list">
@@ -51,7 +51,7 @@
           </fieldset>
           <button type="submit" class="popup__save-button">Сохранить</button>
         </form>
-        <button type="button" class="popup__close-button"></button>
+        <button aria-label="Закрыть всплывающее окно" type="button" class="popup__close-button"></button>
       </div>
     </section>
 
@@ -76,7 +76,7 @@
           </fieldset>
           <button type="submit" class="popup__save-button">Создать</button>
         </form>
-        <button type="button" class="popup__close-button"></button>
+        <button aria-label="Закрыть всплывающее окно" type="button" class="popup__close-button"></button>
       </div>
     </section>
 
@@ -86,7 +86,7 @@
           <img alt="" class="picture-modal__picture">
           <figcaption class="picture-modal__caption"></figcaption>
         </figure>
-        <button type="button" class="popup__close-button picture-modal__close-button"></button>
+        <button aria-label="Выйти из режима просмотра" type="button" class="popup__close-button picture-modal__close-button"></button>
       </div>
     </section>
 
@@ -95,9 +95,9 @@
         <img class="cards__image" alt="">
         <div class="cards__caption">
           <h3 class="cards__title"></h3>
-          <button type="button" class="cards__like-button"></button>
+          <button aria-label="Оценить" type="button" class="cards__like-button"></button>
         </div>
-        <div class="cards__trash-button"></div>
+        <div aria-label="Удалить изображение" class="cards__trash-button"></div>
       </li>
     </template>
     <script type="module" src="scripts/index.js"></script>

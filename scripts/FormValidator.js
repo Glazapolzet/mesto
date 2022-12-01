@@ -1,12 +1,3 @@
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-};
-
 class FormValidator {
 
   constructor(config, form) {
@@ -34,7 +25,7 @@ class FormValidator {
     this._errorInput.textContent = '';
   }
 
-  _isValid(formInput) {
+  _toggleInputErrorState(formInput) {
     if (!formInput.validity.valid) {
       this._showInputError(formInput);
     } else {
@@ -65,10 +56,15 @@ class FormValidator {
 
     this._inputList.forEach(formInput => {
       formInput.addEventListener('input', () => {
-        this._isValid(formInput);
+        this._toggleInputErrorState(formInput);
         this._toggleButtonState();
       });
     });
+  }
+
+  resetValidation() {
+    this._inputList.forEach(formInput => this._hideInputError(formInput));
+    this._toggleButtonState();
   }
 
   enableValidation() {
@@ -77,11 +73,4 @@ class FormValidator {
 
 }
 
-const hideInputError = (form, formInput) => {
-  const errorInput = form.querySelector(`.${formInput.id}-error`);
-  formInput.classList.remove(config.inputErrorClass);
-  errorInput.classList.remove(config.errorClass);
-  errorInput.textContent = '';
-}
-
-export {FormValidator, hideInputError, config};
+export default FormValidator;

@@ -1,6 +1,6 @@
-import initialCards from './cards.js';
+import {initialCards, config} from './constants.js';
 import Card from './Card.js';
-import {FormValidator, hideInputError, config} from './FormValidator.js';
+import FormValidator from './FormValidator.js';
 
 const page = document.querySelector('.page');
 
@@ -19,8 +19,6 @@ const buttonAddPlace = profile.querySelector('.profile__add-place-button');
 const userName = profile.querySelector('.profile__name');
 const userJob = profile.querySelector('.profile__job');
 
-const formList = document.querySelectorAll('.popup__form');
-
 const popupFormEditProfile = popupEditProfile.querySelector('.popup__form');
 const inputUserName = popupEditProfile.querySelector('.popup__input_content_user-name');
 const inputUserJob = popupEditProfile.querySelector('.popup__input_content_user-job');
@@ -28,6 +26,13 @@ const inputUserJob = popupEditProfile.querySelector('.popup__input_content_user-
 const popupFormAddPlace = popupAddPlace.querySelector('.popup__form');
 const inputPlaceTitle = popupAddPlace.querySelector('.popup__input_content_place-title');
 const inputPlaceLink = popupAddPlace.querySelector('.popup__input_content_place-link');
+
+const editProfileValidator = new FormValidator(config, popupFormEditProfile);
+const addPlaceValidator = new FormValidator(config, popupFormAddPlace);
+
+const pictureModal = page.querySelector('.picture-modal');
+const picture = pictureModal.querySelector('.picture-modal__picture');
+const pictureCaption = pictureModal.querySelector('.picture-modal__caption');
 
 
 function showPopup (popupName) {
@@ -38,13 +43,22 @@ function showPopup (popupName) {
 function closePopup (popupName) {
   document.removeEventListener('keydown', closeByEsc);
   popupName.classList.remove('popup_opened');
-  if (!popupName.classList.contains('picture-modal')) {
-    const inputList = Array.from(popupName.querySelectorAll('.popup__input'));
-    inputList.forEach(input => hideInputError(popupName, input));
-  }
 }
 
-function closeButtonsAddHandler () {
+function handleOpenPopup (name, link) {
+  picture.src = link;
+  picture.alt = name;
+  pictureCaption.textContent = name;
+
+  showPopup(pictureModal);
+}
+
+function createCard(data, templateSelector, handleOpenPopup) {
+  const card = new Card(data, templateSelector, handleOpenPopup);
+  return card.createCard();
+}
+
+function addCloseButtonsHandlers () {
   const buttonsClose = page.querySelectorAll('.popup__close-button');
   buttonsClose.forEach(buttonClose =>
     buttonClose.addEventListener('click', () => closePopup(buttonClose.closest('.popup'))));
@@ -62,12 +76,13 @@ function editProfileFormSubmitHandler (evt) {
 function addPlaceFormSubmitHandler (evt) {
   evt.preventDefault();
 
-  const newPlace = {};
-  newPlace.name = inputPlaceTitle.value;
-  newPlace.link = inputPlaceLink.value;
+  const newPlace = {
+    name: inputPlaceTitle.value,
+    link: inputPlaceLink.value,
+  };
 
-  const card = new Card(newPlace, '#card', showPopup);
-  cardsList.prepend(card.createCard());
+  const card = createCard(newPlace, '#card', handleOpenPopup);
+  cardsList.prepend(card);
 
   closePopup(popupAddPlace);
 
@@ -87,8 +102,8 @@ const closeByEsc = (evt) => {
 }
 
 initialCards.forEach(item => {
-  const card = new Card(item, '#card', showPopup);
-  cardsList.append(card.createCard());
+  const card = createCard(item, '#card', handleOpenPopup);
+  cardsList.append(card);
 });
 
 popupList.forEach(popup => popup.addEventListener('click', closeByOverlayClick));
@@ -100,17 +115,17 @@ buttonEditUser.addEventListener('click', () => {
   inputUserName.value = userName.textContent;
   inputUserJob.value = userJob.textContent;
 
+  editProfileValidator.resetValidation();
   showPopup(popupEditProfile);
 });
 
 buttonAddPlace.addEventListener('click', () => {
   popupFormAddPlace.reset();
+  addPlaceValidator.resetValidation();
   showPopup(popupAddPlace);
 });
 
-formList.forEach(item => {
-  const form = new FormValidator(config, item);
-  form.enableValidation();
-})
+editProfileValidator.enableValidation();
+addPlaceValidator.enableValidation();
 
-closeButtonsAddHandler();
+addCloseButtonsHandlers();

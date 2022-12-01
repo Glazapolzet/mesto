@@ -1,10 +1,10 @@
 class Card {
 
-  constructor(data, templateSelector, showPopup) {
+  constructor(data, templateSelector, handleOpenPopup) {
     this._title = data.name;
     this._image = data.link;
     this._templateSelector = templateSelector;
-    this._showPopup = showPopup;
+    this._handleOpenPopup = handleOpenPopup;
   }
 
   _getTemplate() {
@@ -24,15 +24,7 @@ class Card {
   }
 
   _showImagePopup() {
-    this._pictureModal = document.querySelector('.picture-modal');
-    this._picture = this._pictureModal.querySelector('.picture-modal__picture');
-    this._pictureCaption = this._pictureModal.querySelector('.picture-modal__caption');
-
-    this._picture.src = this._cardImage.src;
-    this._picture.alt = this._cardImage.alt;
-    this._pictureCaption.textContent = this._cardTitle.textContent;
-
-    this._showPopup(this._pictureModal);
+    this._handleOpenPopup(this._title, this._image);
   }
 
   _setEventListeners() {
