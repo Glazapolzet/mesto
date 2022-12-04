@@ -60,8 +60,7 @@ function createCard(data, templateSelector, handleOpenPopup) {
 
 function addCloseButtonsHandlers () {
   const buttonsClose = page.querySelectorAll('.popup__close-button');
-  buttonsClose.forEach(buttonClose =>
-    buttonClose.addEventListener('click', () => closePopup(buttonClose.closest('.popup'))));
+  buttonsClose.forEach(buttonClose => buttonClose.addEventListener('click', () => closePopup(buttonClose.closest('.popup'))));
 }
 
 function editProfileFormSubmitHandler (evt) {
