@@ -1,10 +1,10 @@
 class Card {
 
-  constructor(data, templateSelector, handleOpenPopup) {
+  constructor(data, templateSelector, handleCardClick) {
     this._title = data.name;
     this._image = data.link;
     this._templateSelector = templateSelector;
-    this._handleOpenPopup = handleOpenPopup;
+    this._handleOpenPopup = handleCardClick;
   }
 
   _getTemplate() {
