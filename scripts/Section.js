@@ -1,4 +1,4 @@
-class Section {
+export default class Section {
 
   constructor ({ items, renderer }, selector) {
     this._itemsToRender = items;
@@ -12,7 +12,7 @@ class Section {
   }
 
   addItem (element) {
-    this._itemsContainer.append(element);
+    this._itemsContainer.prepend(element);
   }
 
 }

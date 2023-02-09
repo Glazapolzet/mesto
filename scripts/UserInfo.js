@@ -1,20 +1,20 @@
-class UserInfo {
+export default class UserInfo {
 
-  constructor (name, info) {
+  constructor (name, desc) {
     this._name = name;
-    this._info = info;
+    this._desc = desc;
   }
 
   getUserInfo () {
     return {
       name: this._name,
-      info: this._info
+      desc: this._desc
     }
   }
 
-  setUserInfo ({ name, info }) {
+  setUserInfo (name, desc) {
     this._name = name;
-    this._info = info;
+    this._desc = desc;
   }
 
 }
