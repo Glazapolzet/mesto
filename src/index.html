@@ -15,7 +15,7 @@
         <div class="profile__info">
           <div class="profile__name-wrapper">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__job">Исследователь океана</p>
+            <p class="profile__desc">Исследователь океана</p>
           </div>
           <button aria-label="Изменить данные профиля" type="button" class="profile__edit-user-button"></button>
         </div>
@@ -36,14 +36,16 @@
           <h3 class="popup__title">Редактировать профиль</h3>
           <fieldset class="popup__input-container">
             <input id="name-input"
+                   name="name"
                    type="text"
                    class="popup__input popup__input_content_user-name"
                    minlength="2" maxlength="40"
                    required>
             <span class="name-input-error popup__input-error"></span>
-            <input id="job-input"
+            <input id="desc-input"
+                   name="desc"
                    type="text"
-                   class="popup__input popup__input_content_user-job"
+                   class="popup__input popup__input_content_user-desc"
                    minlength="2" maxlength="200"
                    required>
             <span class="job-input-error popup__input-error"></span>
@@ -60,6 +62,7 @@
           <h3 class="popup__title">Новое место</h3>
           <fieldset class="popup__input-container">
             <input id="title-input"
+                   name="title"
                    type="text"
                    class="popup__input popup__input_content_place-title"
                    placeholder="Название"
@@ -67,6 +70,7 @@
                    required>
             <span class="title-input-error popup__input-error"></span>
             <input id="link-input"
+                   name="link"
                    type="url"
                    class="popup__input popup__input_content_place-link"
                    placeholder="Ссылка на картинку"

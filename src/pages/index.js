@@ -1,6 +1,6 @@
 import './index.css';
 
-import {initialCards, config} from '../components/constants.js';
+import {initialCards, config} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -12,10 +12,6 @@ const page = document.querySelector('.page');
 
 const profile = page.querySelector('.profile');
 
-const profilePopup = new PopupWithForm('.popup_use_edit-profile', handleProfileFormSubmit);
-const placePopup = new PopupWithForm('.popup_use_add-place', handlePlaceFormSubmit);
-const imagePopup = new PopupWithImage('.picture-modal');
-
 const placePopupForm = document.forms['addPlace'];
 const profilePopupForm = document.forms['editProfile'];
 
@@ -23,26 +19,12 @@ const profileValidator = new FormValidator(config, profilePopupForm);
 const placeValidator = new FormValidator(config, placePopupForm);
 
 const userName = profile.querySelector('.profile__name');
-const userDesc = profile.querySelector('.profile__job');
+const userDesc = profile.querySelector('.profile__desc');
 
-const inputUserName = profilePopupForm.querySelector('.popup__input_content_user-name');
-const inputUserDesc = profilePopupForm.querySelector('.popup__input_content_user-job');
-const inputPlaceTitle = placePopupForm.querySelector('.popup__input_content_place-title');
-const inputPlaceLink = placePopupForm.querySelector('.popup__input_content_place-link');
-
-const userInfo = new UserInfo(userName.textContent, userDesc.textContent);
+const userInfo = new UserInfo(userName, userDesc);
 
 const profileButton = profile.querySelector('.profile__edit-user-button');
 const placeButton = profile.querySelector('.profile__add-place-button');
-
-const cardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = createCard(item, '#card', handleCardClick);
-    cardList.addItem(card);
-  }
-},
-  '.cards__list')
 
 function handleCardClick (name, link) {
   imagePopup.open(name, link);
@@ -53,35 +35,41 @@ function createCard(data, templateSelector, handleCardClick) {
   return card.createCard();
 }
 
-function handleProfileFormSubmit (evt) {
-  evt.preventDefault();
+const cardList = new Section({
+    items: initialCards,
+    renderer: (item) => {
+      const card = createCard(item, '#card', handleCardClick);
+      cardList.addItem(card);
+    }
+  },
+  '.cards__list');
 
-  userInfo.setUserInfo(inputUserName.value, inputUserDesc.value);
+const imagePopup = new PopupWithImage('.picture-modal');
 
-  userName.textContent = userInfo.getUserInfo().name;
-  userDesc.textContent = userInfo.getUserInfo().desc;
+const profilePopup = new PopupWithForm({
+  selector: '.popup_use_edit-profile',
+  handleFormSubmit: ({ name, desc }) => {
+    userInfo.setUserInfo(name, desc);
 
-  profilePopup.close();
-}
-
-function handlePlaceFormSubmit (evt) {
-  evt.preventDefault();
-
-  const newPlace = {
-    name: inputPlaceTitle.value,
-    link: inputPlaceLink.value,
+    profilePopup.close();
   }
+});
 
-  const newCard = createCard(newPlace, '#card', handleCardClick);
-  cardList.addItem(newCard);
+const placePopup = new PopupWithForm({
+  selector: '.popup_use_add-place',
+  handleFormSubmit: (data) => {
 
-  placePopup.close();
-  placePopupForm.reset();
-}
+    const newCard = createCard(data, '#card', handleCardClick);
+    cardList.addItem(newCard);
+
+    placePopup.close();
+  }
+});
 
 profileButton.addEventListener('click', () => {
-  inputUserName.value = userInfo.getUserInfo().name;
-  inputUserDesc.value = userInfo.getUserInfo().desc;
+  const infoObject = userInfo.getUserInfo();
+
+  profilePopup.setInputValues(infoObject);
 
   profileValidator.resetValidation();
 
@@ -89,7 +77,6 @@ profileButton.addEventListener('click', () => {
 });
 
 placeButton.addEventListener('click', () => {
-  placePopupForm.reset();
   placeValidator.resetValidation();
 
   placePopup.open();

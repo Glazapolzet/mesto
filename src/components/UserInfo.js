@@ -1,20 +1,20 @@
 export default class UserInfo {
 
-  constructor (name, desc) {
-    this._name = name;
-    this._desc = desc;
+  constructor (nameSelector, descSelector) {
+    this._name = nameSelector;
+    this._desc = descSelector;
   }
 
   getUserInfo () {
     return {
-      name: this._name,
-      desc: this._desc
+      name: this._name.textContent,
+      desc: this._desc.textContent
     }
   }
 
   setUserInfo (name, desc) {
-    this._name = name;
-    this._desc = desc;
+    this._name.textContent = name;
+    this._desc.textContent = desc;
   }
 
 }

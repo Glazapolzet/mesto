@@ -17,27 +17,27 @@ const config = {
 
 const initialCards = [
   {
-    name: 'аниме кот',
+    title: 'аниме кот',
     link: animeCat
   },
   {
-    name: 'кот бакалавр',
+    title: 'кот бакалавр',
     link: bachelorCat
   },
   {
-    name: 'кот просит два рубля',
+    title: 'кот просит два рубля',
     link: twoRoubleCat
   },
   {
-    name: 'кот-аэродоставка',
+    title: 'кот-аэродоставка',
     link: fungusCat
   },
   {
-    name: 'любопытный кот',
+    title: 'любопытный кот',
     link: curiousCat
   },
   {
-    name: 'образованный кот',
+    title: 'образованный кот',
     link: studyCat
   }
 ];
