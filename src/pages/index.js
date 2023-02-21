@@ -59,6 +59,7 @@ function postCard(name, link) {
 
       placePopup.close();
     })
+    .catch(err => console.log(err));
 }
 
 function editAvatar(link) {
