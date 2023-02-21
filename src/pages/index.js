@@ -40,6 +40,46 @@ function createCard(data, templateSelector, handleCardClick) {
   return card.createCard();
 }
 
+function editAvatar(link) {
+  fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me/avatar', {
+    method: 'PATCH',
+    headers: {
+      authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      avatar: link
+    })
+  })
+    .then(() => {
+      userAvatar.src = link;
+
+      avatarPopup.close();
+      console.log('avatar est');
+    })
+    .catch((err) => console.log(err));
+}
+
+function editProfile(name, about) {
+  fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
+    method: 'PATCH',
+    headers: {
+      authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      about: about
+    })
+  })
+    .then(() => {
+      userInfo.setUserInfo(name, about);
+
+      profilePopup.close();
+    })
+    .catch((err) => console.log(err));
+}
+
 fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
   headers: {
     authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
@@ -52,6 +92,7 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
     userDesc.textContent = data["about"];
     userInfo = new UserInfo(userName, userDesc);
   })
+
 
 fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
   headers: {
@@ -77,18 +118,17 @@ const imagePopup = new PopupWithImage('.picture-modal');
 const avatarPopup = new PopupWithForm({
   selector: '.popup_use_edit-avatar',
   handleFormSubmit: ({ link }) => {
-    userAvatar.src = link;
-
-    avatarPopup.close();
+    editAvatar(link);
+    // userAvatar.src = link;
+    //
+    // avatarPopup.close();
   }
 })
 
 const profilePopup = new PopupWithForm({
   selector: '.popup_use_edit-profile',
   handleFormSubmit: ({ name, desc }) => {
-    userInfo.setUserInfo(name, desc);
-
-    profilePopup.close();
+    editProfile(name, desc);
   }
 });
 
@@ -113,7 +153,6 @@ profileButton.addEventListener('click', () => {
   const infoObject = userInfo.getUserInfo();
 
   profilePopup.setInputValues(infoObject);
-
   profileValidator.resetValidation();
 
   profilePopup.open();
