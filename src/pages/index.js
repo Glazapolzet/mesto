@@ -40,6 +40,27 @@ function createCard(data, templateSelector, handleCardClick) {
   return card.createCard();
 }
 
+function postCard(name, link) {
+  fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
+    method: 'POST',
+    headers: {
+      authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      link: link
+    })
+  })
+    .then(res => res.json())
+    .then((data) => {
+      const newCard = createCard(data, '#card', handleCardClick);
+      cardList.addItem(newCard);
+
+      placePopup.close();
+    })
+}
+
 function editAvatar(link) {
   fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me/avatar', {
     method: 'PATCH',
@@ -55,7 +76,6 @@ function editAvatar(link) {
       userAvatar.src = link;
 
       avatarPopup.close();
-      console.log('avatar est');
     })
     .catch((err) => console.log(err));
 }
@@ -79,6 +99,7 @@ function editProfile(name, about) {
     })
     .catch((err) => console.log(err));
 }
+
 
 fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
   headers: {
@@ -118,38 +139,35 @@ const imagePopup = new PopupWithImage('.picture-modal');
 const avatarPopup = new PopupWithForm({
   selector: '.popup_use_edit-avatar',
   handleFormSubmit: ({ link }) => {
+    avatarPopup.setLoadingButtonText();
     editAvatar(link);
-    // userAvatar.src = link;
-    //
-    // avatarPopup.close();
   }
 })
 
 const profilePopup = new PopupWithForm({
   selector: '.popup_use_edit-profile',
   handleFormSubmit: ({ name, desc }) => {
+    profilePopup.setLoadingButtonText();
     editProfile(name, desc);
   }
 });
 
 const placePopup = new PopupWithForm({
   selector: '.popup_use_add-place',
-  handleFormSubmit: (data) => {
-
-    const newCard = createCard(data, '#card', handleCardClick);
-    cardList.addItem(newCard);
-
-    placePopup.close();
+  handleFormSubmit: ({ name, link }) => {
+    postCard(name, link);
   }
 });
 
 avatarButton.addEventListener('click', () => {
+  avatarPopup.setDefaultButtonText();
   avatarValidator.resetValidation();
 
   avatarPopup.open();
 })
 
 profileButton.addEventListener('click', () => {
+  profilePopup.setDefaultButtonText();
   const infoObject = userInfo.getUserInfo();
 
   profilePopup.setInputValues(infoObject);
