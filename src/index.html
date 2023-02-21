@@ -34,7 +34,19 @@
 
     <section class="popup popup_use_edit-avatar">
       <div class="popup__wrapper">
-
+        <form name="editAvatar" class="popup__form" novalidate>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <fieldset class="popup__input-container">
+            <input id="avatar-link-input"
+                   name="avatar-link"
+                   type="text"
+                   class="popup__input popup__input_content_avatar-link"
+                   required>
+            <span class="avatar-link-input-error popup__input-error"></span>
+          </fieldset>
+          <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+        <button aria-label="Закрыть всплывающее окно" type="button" class="popup__close-button"></button>
       </div>
     </section>
 
@@ -87,6 +99,14 @@
           </fieldset>
           <button type="submit" class="popup__save-button">Создать</button>
         </form>
+        <button aria-label="Закрыть всплывающее окно" type="button" class="popup__close-button"></button>
+      </div>
+    </section>
+
+    <section class="popup popup_use_delete-card">
+      <div class="popup__wrapper">
+        <h3 class="popup__title">Вы уверены?</h3>
+        <button type="submit" class="popup__save-button">Да</button>
         <button aria-label="Закрыть всплывающее окно" type="button" class="popup__close-button"></button>
       </div>
     </section>
