@@ -17,12 +17,15 @@ const userName = profile.querySelector('.profile__name');
 const userDesc = profile.querySelector('.profile__desc');
 let userInfo;
 
+const avatarPopupForm = document.forms['editAvatar'];
 const placePopupForm = document.forms['addPlace'];
 const profilePopupForm = document.forms['editProfile'];
 
+const avatarValidator = new FormValidator(config, avatarPopupForm);
 const profileValidator = new FormValidator(config, profilePopupForm);
 const placeValidator = new FormValidator(config, placePopupForm);
 
+const avatarButton = profile.querySelector('.profile__avatar-wrapper');
 const profileButton = profile.querySelector('.profile__edit-user-button');
 const placeButton = profile.querySelector('.profile__add-place-button');
 
@@ -71,6 +74,15 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
 
 const imagePopup = new PopupWithImage('.picture-modal');
 
+const avatarPopup = new PopupWithForm({
+  selector: '.popup_use_edit-avatar',
+  handleFormSubmit: ({ link }) => {
+    userAvatar.src = link;
+
+    avatarPopup.close();
+  }
+})
+
 const profilePopup = new PopupWithForm({
   selector: '.popup_use_edit-profile',
   handleFormSubmit: ({ name, desc }) => {
@@ -91,6 +103,12 @@ const placePopup = new PopupWithForm({
   }
 });
 
+avatarButton.addEventListener('click', () => {
+  avatarValidator.resetValidation();
+
+  avatarPopup.open();
+})
+
 profileButton.addEventListener('click', () => {
   const infoObject = userInfo.getUserInfo();
 
@@ -107,9 +125,11 @@ placeButton.addEventListener('click', () => {
   placePopup.open();
 });
 
+avatarPopup.setEventListeners();
 profilePopup.setEventListeners();
 placePopup.setEventListeners();
 imagePopup.setEventListeners();
 
+avatarValidator.enableValidation();
 placeValidator.enableValidation();
 profileValidator.enableValidation();
