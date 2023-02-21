@@ -1,6 +1,6 @@
 import './index.css';
 
-import {initialCards, config} from '../utils/constants.js';
+import {config} from '../utils/constants.js';
 import Card from '../components/Card.js';
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -26,6 +26,8 @@ const userInfo = new UserInfo(userName, userDesc);
 const profileButton = profile.querySelector('.profile__edit-user-button');
 const placeButton = profile.querySelector('.profile__add-place-button');
 
+let cardList;
+
 function handleCardClick (name, link) {
   imagePopup.open(name, link);
 }
@@ -35,14 +37,32 @@ function createCard(data, templateSelector, handleCardClick) {
   return card.createCard();
 }
 
-const cardList = new Section({
-    items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item, '#card', handleCardClick);
-      cardList.addItem(card);
-    }
-  },
-  '.cards__list');
+fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
+  headers: {
+    authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
+  }
+})
+  .then(res => res.json())
+  .then((data) => {
+    cardList = new Section({
+        items: data,
+        renderer: (item) => {
+          const card = createCard(item, '#card', handleCardClick);
+          cardList.addItem(card);
+        }
+      },
+      '.cards__list');
+    cardList.renderItems();
+  });
+
+// const cardList = new Section({
+//     items: initialCards,
+//     renderer: (item) => {
+//       const card = createCard(item, '#card', handleCardClick);
+//       cardList.addItem(card);
+//     }
+//   },
+//   '.cards__list');
 
 const imagePopup = new PopupWithImage('.picture-modal');
 
@@ -82,7 +102,7 @@ placeButton.addEventListener('click', () => {
   placePopup.open();
 });
 
-cardList.renderItems();
+// cardList.renderItems();
 
 profilePopup.setEventListeners();
 placePopup.setEventListeners();
