@@ -12,16 +12,16 @@ const page = document.querySelector('.page');
 
 const profile = page.querySelector('.profile');
 
+const userAvatar = profile.querySelector('.profile__avatar');
+const userName = profile.querySelector('.profile__name');
+const userDesc = profile.querySelector('.profile__desc');
+let userInfo;
+
 const placePopupForm = document.forms['addPlace'];
 const profilePopupForm = document.forms['editProfile'];
 
 const profileValidator = new FormValidator(config, profilePopupForm);
 const placeValidator = new FormValidator(config, placePopupForm);
-
-const userName = profile.querySelector('.profile__name');
-const userDesc = profile.querySelector('.profile__desc');
-
-const userInfo = new UserInfo(userName, userDesc);
 
 const profileButton = profile.querySelector('.profile__edit-user-button');
 const placeButton = profile.querySelector('.profile__add-place-button');
@@ -37,13 +37,26 @@ function createCard(data, templateSelector, handleCardClick) {
   return card.createCard();
 }
 
+fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
+  headers: {
+    authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
+  }
+})
+  .then(res => res.json())
+  .then(data => {
+    userAvatar.src = data["avatar"];
+    userName.textContent = data["name"];
+    userDesc.textContent = data["about"];
+    userInfo = new UserInfo(userName, userDesc);
+  })
+
 fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
   headers: {
     authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
   }
 })
   .then(res => res.json())
-  .then((data) => {
+  .then(data => {
     cardList = new Section({
         items: data,
         renderer: (item) => {
@@ -53,16 +66,8 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
       },
       '.cards__list');
     cardList.renderItems();
-  });
-
-// const cardList = new Section({
-//     items: initialCards,
-//     renderer: (item) => {
-//       const card = createCard(item, '#card', handleCardClick);
-//       cardList.addItem(card);
-//     }
-//   },
-//   '.cards__list');
+  })
+  .catch((err) => console.log(err));
 
 const imagePopup = new PopupWithImage('.picture-modal');
 
@@ -101,8 +106,6 @@ placeButton.addEventListener('click', () => {
 
   placePopup.open();
 });
-
-// cardList.renderItems();
 
 profilePopup.setEventListeners();
 placePopup.setEventListeners();
