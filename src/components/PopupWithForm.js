@@ -2,7 +2,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
 
-  constructor ({selector, handleFormSubmit}) {
+  constructor ({ selector, handleFormSubmit }) {
     super(selector);
 
     this._handleFormSubmit = handleFormSubmit;
@@ -38,8 +38,8 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  setLoadingButtonText() {
-    this._submitButton.textContent = 'Сохранение...';
+  setLoadingButtonText(text) {
+    this._submitButton.textContent = text;
   }
 
   setDefaultButtonText() {

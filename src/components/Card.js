@@ -1,9 +1,13 @@
 export  default class Card {
 
-  constructor(data, templateSelector, handleCardClick) {
-    this._title = data['name'];
-    this._image = data['link'];
-    this._likes = data['likes'];
+  constructor({ _id, name, link, likes}, templateSelector, handleCardClick) {
+    this._id = _id;
+
+    this._title = name;
+    this._image = link;
+    this._likes = likes;
+    this._isLiked = false;
+
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -16,8 +20,53 @@ export  default class Card {
       .cloneNode(true);
   }
 
-  _handleLikeButton() {
+  _setLike() {
+    fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${this._id}/likes`, {
+      method: 'PUT',
+      headers: {
+        authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this._toggleLikeButton(data);
+      })
+      .catch(err => console.log(err))
+  }
+
+  _removeLike() {
+    fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${this._id}/likes`, {
+      method: 'DELETE',
+      headers: {
+        authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        this._toggleLikeButton(data);
+      })
+      .catch(err => console.log(err))
+  }
+
+  _updateLikeCounter() {
+    this._likeCounter.textContent = this._likes.length;
+  }
+
+  _toggleLikeButton({ likes }) {
+    this._isLiked = !this._isLiked;
+
+    this._likes = likes;
     this._likeButton.classList.toggle('cards__like-button_active');
+
+    this._updateLikeCounter();
+  }
+
+  _handleLikeButton() {
+    if(this._isLiked) {
+      this._removeLike();
+    } else {
+      this._setLike();
+    }
   }
 
   _handleTrashButton() {
@@ -46,7 +95,8 @@ export  default class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._title;
     this._cardTitle.textContent = this._title;
-    this._likeCounter.textContent = this._likes.length;
+
+    this._updateLikeCounter();
 
     this._setEventListeners();
 

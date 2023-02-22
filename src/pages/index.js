@@ -123,6 +123,7 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
 })
   .then(res => res.json())
   .then(data => {
+    console.log(data);
     cardList = new Section({
         items: data,
         renderer: (item) => {
@@ -140,7 +141,7 @@ const imagePopup = new PopupWithImage('.picture-modal');
 const avatarPopup = new PopupWithForm({
   selector: '.popup_use_edit-avatar',
   handleFormSubmit: ({ link }) => {
-    avatarPopup.setLoadingButtonText();
+    avatarPopup.setLoadingButtonText('Сохранение...');
     editAvatar(link);
   }
 })
@@ -148,7 +149,7 @@ const avatarPopup = new PopupWithForm({
 const profilePopup = new PopupWithForm({
   selector: '.popup_use_edit-profile',
   handleFormSubmit: ({ name, desc }) => {
-    profilePopup.setLoadingButtonText();
+    profilePopup.setLoadingButtonText('Сохранение...');
     editProfile(name, desc);
   }
 });
@@ -156,6 +157,7 @@ const profilePopup = new PopupWithForm({
 const placePopup = new PopupWithForm({
   selector: '.popup_use_add-place',
   handleFormSubmit: ({ name, link }) => {
+    placePopup.setLoadingButtonText('Добавление...');
     postCard(name, link);
   }
 });
@@ -178,6 +180,7 @@ profileButton.addEventListener('click', () => {
 });
 
 placeButton.addEventListener('click', () => {
+  placePopup.setDefaultButtonText();
   placeValidator.resetValidation();
 
   placePopup.open();
