@@ -26,7 +26,13 @@ export  default class Card {
         authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
       .then(data => {
         this._toggleLikeButton(data);
       })
@@ -40,7 +46,13 @@ export  default class Card {
         authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
       }
     })
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+
+        return Promise.reject(`Ошибка: ${res.status}`);
+      })
       .then(data => {
         this._toggleLikeButton(data);
       })
