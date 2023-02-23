@@ -59,13 +59,6 @@ function handleTrashClick(card, cardId) {
   trashPopup.open();
 }
 
-const trashPopup = new PopupWithConfirmation({
-  selector: '.popup_use_delete-card',
-  handleButtonClick: () => handleButtonClick()
-});
-
-trashPopup.setEventListeners();
-
 function createCard(data, personalId) {
   const card = data['owner']['_id'] === personalId
   ? new PersonalCard(data, '#personal-card', handleCardClick, handleTrashClick)
@@ -104,7 +97,6 @@ function editProfile(name, about) {
     .catch((err) => console.log(err));
 }
 
-
 api.getUserData()
   .then(({ avatar, name, about, _id }) => {
     userAvatar.src = avatar;
@@ -112,7 +104,6 @@ api.getUserData()
     userDesc.textContent = about;
     userInfo = new UserInfo(userName, userDesc, _id);
   })
-
 
 api.getInitialCards()
   .then(data => {
@@ -154,6 +145,11 @@ const placePopup = new PopupWithForm({
   }
 });
 
+const trashPopup = new PopupWithConfirmation({
+  selector: '.popup_use_delete-card',
+  handleButtonClick: () => handleButtonClick()
+});
+
 avatarButton.addEventListener('click', () => {
   avatarPopup.setDefaultButtonText();
   avatarValidator.resetValidation();
@@ -178,6 +174,7 @@ placeButton.addEventListener('click', () => {
   placePopup.open();
 });
 
+trashPopup.setEventListeners();
 avatarPopup.setEventListeners();
 profilePopup.setEventListeners();
 placePopup.setEventListeners();
