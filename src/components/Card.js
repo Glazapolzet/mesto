@@ -6,7 +6,6 @@ export  default class Card {
     this._title = name;
     this._image = link;
     this._likes = likes;
-    this._isLiked = false;
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -69,35 +68,31 @@ export  default class Card {
     }
   }
 
-  _handleTrashButton() {
-    this._card.remove();
-  }
-
   _showImagePopup() {
     this._handleCardClick(this._title, this._image);
   }
 
   _setEventListeners() {
     this._likeButton.addEventListener('click', () => this._handleLikeButton());
-    this._trashButton.addEventListener('click', () => this._handleTrashButton());
     this._cardImage.addEventListener('click', () => this._showImagePopup());
   }
 
-  createCard() {
+  _fillTemplate() {
     this._card = this._getTemplate();
 
     this._cardImage = this._card.querySelector('.cards__image');
     this._cardTitle = this._card.querySelector('.cards__title');
     this._likeButton = this._card.querySelector('.cards__like-button');
     this._likeCounter = this._card.querySelector('.cards__like-counter');
-    this._trashButton = this._card.querySelector('.cards__trash-button');
 
     this._cardImage.src = this._image;
     this._cardImage.alt = this._title;
     this._cardTitle.textContent = this._title;
+  }
 
+  createCard() {
+    this._fillTemplate();
     this._updateLikeCounter();
-
     this._setEventListeners();
 
     return this._card;

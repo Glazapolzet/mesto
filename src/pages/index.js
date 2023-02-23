@@ -2,6 +2,8 @@ import './index.css';
 
 import {config} from '../utils/constants.js';
 import Card from '../components/Card.js';
+import PersonalCard from "../components/PersonalCard.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
@@ -15,7 +17,6 @@ const profile = page.querySelector('.profile');
 const userAvatar = profile.querySelector('.profile__avatar');
 const userName = profile.querySelector('.profile__name');
 const userDesc = profile.querySelector('.profile__desc');
-let userInfo;
 
 const avatarPopupForm = document.forms['editAvatar'];
 const placePopupForm = document.forms['addPlace'];
@@ -29,14 +30,38 @@ const avatarButton = profile.querySelector('.profile__avatar-wrapper');
 const profileButton = profile.querySelector('.profile__edit-user-button');
 const placeButton = profile.querySelector('.profile__add-place-button');
 
+let userInfo;
 let cardList;
 
-function handleCardClick (name, link) {
+function handleCardClick(name, link) {
   imagePopup.open(name, link);
 }
 
-function createCard(data, templateSelector, handleCardClick) {
-  const card = new Card(data, templateSelector, handleCardClick);
+function handleTrashClick(card, cardId) {
+  const trashPopup = new PopupWithConfirmation({
+    selector: '.popup_use_delete-card',
+    handleButtonClick: () => {
+      fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${cardId}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
+        }
+      })
+        .then(() => {
+          card.remove();
+          trashPopup.close();
+        })
+        .catch(err => console.log(err))
+    }
+  });
+  trashPopup.setEventListeners();
+  trashPopup.open();
+}
+
+function createCard(data, personalId) {
+  const card = data['owner']['_id'] === personalId
+  ? new PersonalCard(data, '#personal-card', handleCardClick, handleTrashClick)
+  : new Card(data, '#card', handleCardClick);
   return card.createCard();
 }
 
@@ -54,7 +79,7 @@ function postCard(name, link) {
   })
     .then(res => res.json())
     .then((data) => {
-      const newCard = createCard(data, '#card', handleCardClick);
+      const newCard = createCard(data, userInfo.getPersonalId(), handleCardClick);
       cardList.addItem(newCard);
 
       placePopup.close();
@@ -108,11 +133,11 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
   }
 })
   .then(res => res.json())
-  .then(data => {
-    userAvatar.src = data["avatar"];
-    userName.textContent = data["name"];
-    userDesc.textContent = data["about"];
-    userInfo = new UserInfo(userName, userDesc);
+  .then(({ avatar, name, about, _id }) => {
+    userAvatar.src = avatar;
+    userName.textContent = name;
+    userDesc.textContent = about;
+    userInfo = new UserInfo(userName, userDesc, _id);
   })
 
 
@@ -123,11 +148,10 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
 })
   .then(res => res.json())
   .then(data => {
-    console.log(data);
     cardList = new Section({
         items: data,
         renderer: (item) => {
-          const card = createCard(item, '#card', handleCardClick);
+          const card = createCard(item, userInfo.getPersonalId(), handleCardClick);
           cardList.addItem(card);
         }
       },
@@ -157,7 +181,7 @@ const profilePopup = new PopupWithForm({
 const placePopup = new PopupWithForm({
   selector: '.popup_use_add-place',
   handleFormSubmit: ({ name, link }) => {
-    placePopup.setLoadingButtonText('Добавление...');
+    placePopup.setLoadingButtonText('Сохранение...');
     postCard(name, link);
   }
 });
