@@ -1,6 +1,7 @@
 import './index.css';
 
 import {config} from '../utils/constants.js';
+import Api from "../components/Api.js";
 import Card from '../components/Card.js';
 import PersonalCard from "../components/PersonalCard.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
@@ -32,31 +33,38 @@ const placeButton = profile.querySelector('.profile__add-place-button');
 
 let userInfo;
 let cardList;
+let handleButtonClick;
+
+const api = new Api({
+  baseURL: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06',
+    'Content-Type': 'application/json'
+  }
+})
 
 function handleCardClick(name, link) {
   imagePopup.open(name, link);
 }
 
 function handleTrashClick(card, cardId) {
-  const trashPopup = new PopupWithConfirmation({
-    selector: '.popup_use_delete-card',
-    handleButtonClick: () => {
-      fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${cardId}`, {
-        method: 'DELETE',
-        headers: {
-          authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
-        }
+  handleButtonClick = () => {
+    api.deleteCard(cardId)
+      .then(() => {
+        card.remove();
+        trashPopup.close();
       })
-        .then(() => {
-          card.remove();
-          trashPopup.close();
-        })
-        .catch(err => console.log(err))
-    }
-  });
-  trashPopup.setEventListeners();
+      .catch(err => console.log(err))
+  }
   trashPopup.open();
 }
+
+const trashPopup = new PopupWithConfirmation({
+  selector: '.popup_use_delete-card',
+  handleButtonClick: () => handleButtonClick()
+});
+
+trashPopup.setEventListeners();
 
 function createCard(data, personalId) {
   const card = data['owner']['_id'] === personalId
@@ -66,18 +74,7 @@ function createCard(data, personalId) {
 }
 
 function postCard(name, link) {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
-    method: 'POST',
-    headers: {
-      authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name,
-      link: link
-    })
-  })
-    .then(res => res.json())
+  api.postCard(name, link)
     .then((data) => {
       const newCard = createCard(data, userInfo.getPersonalId(), handleCardClick);
       cardList.addItem(newCard);
@@ -88,16 +85,7 @@ function postCard(name, link) {
 }
 
 function editAvatar(link) {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me/avatar', {
-    method: 'PATCH',
-    headers: {
-      authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      avatar: link
-    })
-  })
+  api.editAvatar(link)
     .then(() => {
       userAvatar.src = link;
 
@@ -107,17 +95,7 @@ function editAvatar(link) {
 }
 
 function editProfile(name, about) {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
-    method: 'PATCH',
-    headers: {
-      authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name,
-      about: about
-    })
-  })
+  api.editProfile(name, about)
     .then(() => {
       userInfo.setUserInfo(name, about);
 
@@ -127,12 +105,7 @@ function editProfile(name, about) {
 }
 
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
-  headers: {
-    authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
-  }
-})
-  .then(res => res.json())
+api.getUserData()
   .then(({ avatar, name, about, _id }) => {
     userAvatar.src = avatar;
     userName.textContent = name;
@@ -141,12 +114,7 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-60/users/me', {
   })
 
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-60/cards', {
-  headers: {
-    authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
-  }
-})
-  .then(res => res.json())
+api.getInitialCards()
   .then(data => {
     cardList = new Section({
         items: data,
