@@ -6,6 +6,7 @@ export  default class Card {
     this._title = name;
     this._image = link;
     this._likes = likes;
+    this._isLiked = false;
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -34,6 +35,7 @@ export  default class Card {
         return Promise.reject(`Ошибка: ${res.status}`);
       })
       .then(data => {
+        console.log(data);
         this._toggleLikeButton(data);
       })
       .catch(err => console.log(err))
@@ -64,11 +66,9 @@ export  default class Card {
   }
 
   _toggleLikeButton({ likes }) {
-    this._isLiked = !this._isLiked;
-
     this._likes = likes;
-    this._likeButton.classList.toggle('cards__like-button_active');
 
+    this.changeLikeIconStatus();
     this._updateLikeCounter();
   }
 
@@ -100,6 +100,19 @@ export  default class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._title;
     this._cardTitle.textContent = this._title;
+  }
+
+  changeLikeIconStatus() {
+    this._isLiked = !this._isLiked;
+    this._likeButton.classList.toggle('cards__like-button_active');
+  }
+
+  getLikedId() {
+    this._likedId = [];
+    this._likes.forEach(likedUser => {
+      this._likedId.push(likedUser._id);
+    });
+    return this._likedId;
   }
 
   createCard() {

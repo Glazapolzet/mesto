@@ -60,10 +60,25 @@ function handleTrashClick(card, cardId) {
 }
 
 function createCard(data, personalId) {
-  const card = data['owner']['_id'] === personalId
-  ? new PersonalCard(data, '#personal-card', handleCardClick, handleTrashClick)
-  : new Card(data, '#card', handleCardClick);
-  return card.createCard();
+  if (data['owner']['_id'] === personalId) {
+    const card = new PersonalCard(data, '#personal-card', handleCardClick, handleTrashClick);
+    const newCard = card.createCard();
+
+    const likedId = card.getLikedId();
+    if (likedId.includes(personalId)) {
+      card.changeLikeIconStatus();
+    }
+    return newCard
+  } else {
+    const card = new Card(data, '#card', handleCardClick);
+    const newCard = card.createCard();
+
+    const likedId = card.getLikedId();
+    if (likedId.includes(personalId)) {
+      card.changeLikeIconStatus();
+    }
+    return newCard;
+  }
 }
 
 function postCard(name, link) {
@@ -110,7 +125,7 @@ api.getInitialCards()
     cardList = new Section({
         items: data,
         renderer: (item) => {
-          const card = createCard(item, userInfo.getPersonalId(), handleCardClick);
+          const card = createCard(item, userInfo.getPersonalId());
           cardList.addItem(card);
         }
       },
