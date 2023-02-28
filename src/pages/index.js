@@ -61,21 +61,21 @@ function handleTrashClick(card, cardId) {
 
 function createCard(data, personalId) {
   if (data['owner']['_id'] === personalId) {
-    const card = new PersonalCard(data, '#personal-card', handleCardClick, handleTrashClick);
+    const card = new PersonalCard(data, '#personal-card', handleCardClick, handleTrashClick, api.updateLike.bind(api));
     const newCard = card.createCard();
 
     const likedId = card.getLikedId();
     if (likedId.includes(personalId)) {
-      card.changeLikeIconStatus();
+      card.toggleLikeIcon();
     }
     return newCard
   } else {
-    const card = new Card(data, '#card', handleCardClick);
+    const card = new Card(data, '#card', handleCardClick, api.updateLike.bind(api));
     const newCard = card.createCard();
 
     const likedId = card.getLikedId();
     if (likedId.includes(personalId)) {
-      card.changeLikeIconStatus();
+      card.toggleLikeIcon();
     }
     return newCard;
   }
@@ -84,7 +84,7 @@ function createCard(data, personalId) {
 function postCard(name, link) {
   api.postCard(name, link)
     .then((data) => {
-      const newCard = createCard(data, userInfo.getPersonalId(), handleCardClick);
+      const newCard = createCard(data, userInfo.getPersonalId());
       cardList.addItem(newCard);
 
       placePopup.close();
@@ -122,6 +122,7 @@ api.getUserData()
 
 api.getInitialCards()
   .then(data => {
+    console.log(data)
     cardList = new Section({
         items: data,
         renderer: (item) => {
@@ -174,9 +175,8 @@ avatarButton.addEventListener('click', () => {
 
 profileButton.addEventListener('click', () => {
   profilePopup.setDefaultButtonText();
-  const infoObject = userInfo.getUserInfo();
 
-  profilePopup.setInputValues(infoObject);
+  profilePopup.setInputValues(userInfo.getUserInfo());
   profileValidator.resetValidation();
 
   profilePopup.open();

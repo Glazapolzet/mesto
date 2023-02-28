@@ -14,8 +14,10 @@ export default class UserInfo {
   }
 
   setUserInfo(name, desc) {
-    this._name.textContent = name;
-    this._desc.textContent = desc;
+    if(name && desc) {
+      this._name.textContent = name;
+      this._desc.textContent = desc;
+    }
   }
 
   getPersonalId() {

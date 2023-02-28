@@ -1,6 +1,6 @@
 export  default class Card {
 
-  constructor({ _id, name, link, likes}, templateSelector, handleCardClick) {
+  constructor({ _id, name, link, likes}, templateSelector, handleCardClick, updateLike) {
     this._id = _id;
 
     this._title = name;
@@ -10,6 +10,7 @@ export  default class Card {
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._updateLike = updateLike;
   }
 
   _getTemplate() {
@@ -21,54 +22,34 @@ export  default class Card {
   }
 
   _setLike() {
-    fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${this._id}/likes`, {
-      method: 'PUT',
-      headers: {
-        authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
-      }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then(data => {
-        console.log(data);
-        this._toggleLikeButton(data);
-      })
-      .catch(err => console.log(err))
+    this._updateLike(this._id, 'PUT', this._toggleLikeButton.bind(this))
   }
 
   _removeLike() {
-    fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${this._id}/likes`, {
-      method: 'DELETE',
-      headers: {
-        authorization: 'c396fbd1-7576-4540-8bc4-2cee17b42d06'
-      }
-    })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-      })
-      .then(data => {
-        this._toggleLikeButton(data);
-      })
-      .catch(err => console.log(err))
+    this._updateLike(this._id, 'DELETE', this._toggleLikeButton.bind(this))
   }
 
   _updateLikeCounter() {
     this._likeCounter.textContent = this._likes.length;
   }
 
+  toggleLikeIcon() {
+    this._isLiked = !this._isLiked;
+    this._likeButton.classList.toggle('cards__like-button_active');
+  }
+
+  getLikedId() {
+    this._likedId = [];
+    this._likes.forEach(likedUser => {
+      this._likedId.push(likedUser._id);
+    });
+    return this._likedId;
+  }
+
   _toggleLikeButton({ likes }) {
     this._likes = likes;
 
-    this.changeLikeIconStatus();
+    this.toggleLikeIcon();
     this._updateLikeCounter();
   }
 
@@ -100,19 +81,6 @@ export  default class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._title;
     this._cardTitle.textContent = this._title;
-  }
-
-  changeLikeIconStatus() {
-    this._isLiked = !this._isLiked;
-    this._likeButton.classList.toggle('cards__like-button_active');
-  }
-
-  getLikedId() {
-    this._likedId = [];
-    this._likes.forEach(likedUser => {
-      this._likedId.push(likedUser._id);
-    });
-    return this._likedId;
   }
 
   createCard() {

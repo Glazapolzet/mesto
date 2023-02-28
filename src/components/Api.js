@@ -6,19 +6,34 @@ export default class Api {
     this._token = options['headers']['authorization'];
   }
 
+  _handlePromise(res) {
+      if (res.ok) {
+        return res.json()
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`)
+    }
+
   getInitialCards() {
     return fetch(`${this._baseURL}/cards`, {
       headers: {
         authorization: this._token
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
+      .then(res => this._handlePromise(res))
+  }
 
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+  //PUT DELETE
+  updateLike(cardId, method, handler) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${cardId}/likes`, {
+      method: method,
+      headers: {
+        authorization: this._token
+      }
+    })
+      .then(res => this._handlePromise(res))
+      .then(data => handler(data))
+      .catch(err => console.log(err))
   }
 
   getUserData() {
@@ -27,13 +42,7 @@ export default class Api {
         authorization: this._token
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+      .then(res => this._handlePromise(res))
   }
 
   editProfile(name, about) {
@@ -66,13 +75,7 @@ export default class Api {
         link: link
       })
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-
-        return Promise.reject(`Ошибка: ${res.status}`);
-      });
+      .then(res => this._handlePromise(res));
   }
 
   deleteCard(cardId) {
