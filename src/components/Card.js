@@ -1,6 +1,6 @@
 export  default class Card {
 
-  constructor({ _id, name, link, likes}, templateSelector, handleCardClick, updateLike) {
+  constructor({ _id, name, link, likes}, templateSelector, handleCardClick, handleTrashClick, updateLike) {
     this._id = _id;
 
     this._title = name;
@@ -10,7 +10,10 @@ export  default class Card {
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleTrashClick = handleTrashClick;
     this._updateLike = updateLike;
+
+    this._fillTemplate();
   }
 
   _getTemplate() {
@@ -38,7 +41,7 @@ export  default class Card {
     this._likeButton.classList.toggle('cards__like-button_active');
   }
 
-  getLikedId() {
+  getLikedIds() {
     this._likedId = [];
     this._likes.forEach(likedUser => {
       this._likedId.push(likedUser._id);
@@ -83,8 +86,19 @@ export  default class Card {
     this._cardTitle.textContent = this._title;
   }
 
+  createTrashButton() {
+    const trashButton = document.createElement('div');
+
+    trashButton.classList.add("cards__trash-button");
+    trashButton.ariaLabel = "Удалить изображение";
+    trashButton.addEventListener('click', () => {
+      this._handleTrashClick(this._card, this._id)
+    });
+
+    this._card.append(trashButton)
+  }
+
   createCard() {
-    this._fillTemplate();
     this._updateLikeCounter();
     this._setEventListeners();
 

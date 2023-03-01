@@ -3,7 +3,6 @@ import './index.css';
 import {config} from '../utils/constants.js';
 import Api from "../components/Api.js";
 import Card from '../components/Card.js';
-import PersonalCard from "../components/PersonalCard.js";
 import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -60,32 +59,23 @@ function handleTrashClick(card, cardId) {
 }
 
 function createCard(data, personalId) {
+  const card = new Card(data, '#card', handleCardClick, handleTrashClick, api.updateLike.bind(api));
+
   if (data['owner']['_id'] === personalId) {
-    const card = new PersonalCard(data, '#personal-card', handleCardClick, handleTrashClick, api.updateLike.bind(api));
-    const newCard = card.createCard();
-
-    const likedId = card.getLikedId();
-    if (likedId.includes(personalId)) {
-      card.toggleLikeIcon();
-    }
-    return newCard
-  } else {
-    const card = new Card(data, '#card', handleCardClick, api.updateLike.bind(api));
-    const newCard = card.createCard();
-
-    const likedId = card.getLikedId();
-    if (likedId.includes(personalId)) {
-      card.toggleLikeIcon();
-    }
-    return newCard;
+    card.createTrashButton();
   }
+  if (card.getLikedIds().includes(personalId)) {
+    card.toggleLikeIcon();
+  }
+
+  return card.createCard()
 }
 
 function postCard(name, link) {
   api.postCard(name, link)
     .then((data) => {
       const newCard = createCard(data, userInfo.getPersonalId());
-      cardList.addItem(newCard);
+      cardList.prependItem(newCard);
 
       placePopup.close();
     })
@@ -112,7 +102,7 @@ function editProfile(name, about) {
     .catch((err) => console.log(err));
 }
 
-api.getUserData()
+const getUserData = api.getUserData()
   .then(({ avatar, name, about, _id }) => {
     userAvatar.src = avatar;
     userName.textContent = name;
@@ -120,20 +110,26 @@ api.getUserData()
     userInfo = new UserInfo(userName, userDesc, _id);
   })
 
-api.getInitialCards()
+const getInitialCards = api.getInitialCards()
   .then(data => {
-    console.log(data)
     cardList = new Section({
         items: data,
         renderer: (item) => {
           const card = createCard(item, userInfo.getPersonalId());
-          cardList.addItem(card);
+
+          if (item['owner']['_id'] === userInfo.getPersonalId()) {
+            cardList.prependItem(card);
+          } else {
+            cardList.appendItem(card);
+          }
         }
       },
       '.cards__list');
-    cardList.renderItems();
   })
   .catch((err) => console.log(err));
+
+Promise.all([getUserData, getInitialCards])
+  .then(() => cardList.renderItems())
 
 const imagePopup = new PopupWithImage('.picture-modal');
 
