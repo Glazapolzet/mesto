@@ -23,9 +23,8 @@ export default class Api {
       .then(res => this._handlePromise(res))
   }
 
-  //PUT DELETE
   updateLike(cardId, method, handler) {
-    return fetch(`https://mesto.nomoreparties.co/v1/cohort-60/cards/${cardId}/likes`, {
+    return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
       method: method,
       headers: {
         authorization: this._token
@@ -54,6 +53,7 @@ export default class Api {
         about: about
       })
     })
+      .then(res => this._handlePromise(res))
   }
 
   editAvatar(link) {
@@ -64,6 +64,7 @@ export default class Api {
         avatar: link
       })
     })
+      .then(res => this._handlePromise(res))
   }
 
   postCard(name, link) {
@@ -85,6 +86,7 @@ export default class Api {
         authorization: this._token
       }
     })
+      .then(res => this._handlePromise(res))
   }
 
 }

@@ -17,6 +17,7 @@ const profile = page.querySelector('.profile');
 const userAvatar = profile.querySelector('.profile__avatar');
 const userName = profile.querySelector('.profile__name');
 const userDesc = profile.querySelector('.profile__desc');
+const userInfo = new UserInfo(userName, userDesc);
 
 const avatarPopupForm = document.forms['editAvatar'];
 const placePopupForm = document.forms['addPlace'];
@@ -30,7 +31,6 @@ const avatarButton = profile.querySelector('.profile__avatar-wrapper');
 const profileButton = profile.querySelector('.profile__edit-user-button');
 const placeButton = profile.querySelector('.profile__add-place-button');
 
-let userInfo;
 let cardList;
 let handleButtonClick;
 
@@ -59,14 +59,14 @@ function handleTrashClick(card, cardId) {
 }
 
 function createCard(data, personalId) {
-  const card = new Card(data, '#card', handleCardClick, handleTrashClick, api.updateLike.bind(api));
-
-  if (data['owner']['_id'] === personalId) {
-    card.createTrashButton();
-  }
-  if (card.getLikedIds().includes(personalId)) {
-    card.toggleLikeIcon();
-  }
+  const card = new Card(
+    data,
+    '#card',
+    personalId,
+    handleCardClick,
+    handleTrashClick,
+    api.updateLike.bind(api)
+  );
 
   return card.createCard()
 }
@@ -84,8 +84,8 @@ function postCard(name, link) {
 
 function editAvatar(link) {
   api.editAvatar(link)
-    .then(() => {
-      userAvatar.src = link;
+    .then(({ avatar }) => {
+      userAvatar.src = avatar;
 
       avatarPopup.close();
     })
@@ -94,26 +94,21 @@ function editAvatar(link) {
 
 function editProfile(name, about) {
   api.editProfile(name, about)
-    .then(() => {
-      userInfo.setUserInfo(name, about);
+    .then((data) => {
+      userInfo.setUserInfo(data);
 
       profilePopup.close();
     })
     .catch((err) => console.log(err));
 }
 
-const getUserData = api.getUserData()
-  .then(({ avatar, name, about, _id }) => {
-    userAvatar.src = avatar;
-    userName.textContent = name;
-    userDesc.textContent = about;
-    userInfo = new UserInfo(userName, userDesc, _id);
-  })
+Promise.all([api.getUserData(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userAvatar.src = userData['avatar'];
+    userInfo.setUserInfo(userData);
 
-const getInitialCards = api.getInitialCards()
-  .then(data => {
     cardList = new Section({
-        items: data,
+        items: initialCards,
         renderer: (item) => {
           const card = createCard(item, userInfo.getPersonalId());
 
@@ -125,11 +120,10 @@ const getInitialCards = api.getInitialCards()
         }
       },
       '.cards__list');
+
+    cardList.renderItems()
   })
   .catch((err) => console.log(err));
-
-Promise.all([getUserData, getInitialCards])
-  .then(() => cardList.renderItems())
 
 const imagePopup = new PopupWithImage('.picture-modal');
 

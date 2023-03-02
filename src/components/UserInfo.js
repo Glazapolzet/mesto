@@ -1,9 +1,8 @@
 export default class UserInfo {
 
-  constructor(nameSelector, descSelector, personalId) {
+  constructor(nameSelector, descSelector) {
     this._name = nameSelector;
     this._desc = descSelector;
-    this._personalId = personalId;
   }
 
   getUserInfo() {
@@ -13,10 +12,11 @@ export default class UserInfo {
     }
   }
 
-  setUserInfo(name, desc) {
-    if(name && desc) {
+  setUserInfo({ name, about, _id }) {
+    if(name && about && _id) {
       this._name.textContent = name;
-      this._desc.textContent = desc;
+      this._desc.textContent = about;
+      this._personalId = _id;
     }
   }
 
