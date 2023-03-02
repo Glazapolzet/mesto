@@ -71,7 +71,7 @@ function createCard(data, personalId) {
     personalId,
     handleCardClick,
     handleTrashClick,
-    updateLike
+    updateLike,
   );
 
   return card.createCard()
