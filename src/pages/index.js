@@ -58,6 +58,12 @@ function handleTrashClick(card, cardId) {
   trashPopup.open();
 }
 
+function updateLike(cardId, method, handler) {
+  api.updateLike(cardId, method)
+    .then(data => handler(data))
+    .catch(err => console.log(err))
+}
+
 function createCard(data, personalId) {
   const card = new Card(
     data,
@@ -65,7 +71,7 @@ function createCard(data, personalId) {
     personalId,
     handleCardClick,
     handleTrashClick,
-    api.updateLike.bind(api)
+    updateLike
   );
 
   return card.createCard()

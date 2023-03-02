@@ -23,7 +23,7 @@ export default class Api {
       .then(res => this._handlePromise(res))
   }
 
-  updateLike(cardId, method, handler) {
+  updateLike(cardId, method) {
     return fetch(`${this._baseURL}/cards/${cardId}/likes`, {
       method: method,
       headers: {
@@ -31,8 +31,6 @@ export default class Api {
       }
     })
       .then(res => this._handlePromise(res))
-      .then(data => handler(data))
-      .catch(err => console.log(err))
   }
 
   getUserData() {

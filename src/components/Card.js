@@ -43,14 +43,6 @@ export  default class Card {
     this._likeButton.classList.toggle('cards__like-button_active');
   }
 
-  _getLikedIds() {
-    this._likedId = [];
-    this._likes.forEach(likedUser => {
-      this._likedId.push(likedUser['_id']);
-    });
-    return this._likedId;
-  }
-
   _toggleLikeButton({ likes }) {
     this._likes = likes;
 
@@ -66,8 +58,21 @@ export  default class Card {
     }
   }
 
+  _getLikedIds() {
+    this._likedId = [];
+    this._likes.forEach(likedUser => {
+      this._likedId.push(likedUser['_id']);
+    });
+    return this._likedId;
+  }
+
   _showImagePopup() {
     this._handleCardClick(this._title, this._image);
+  }
+
+  _hideTrashButton() {
+    this._trashButton.classList.add('cards__trash-button_hidden');
+    this._trashButton.disabled = true;
   }
 
   _setEventListeners() {
@@ -93,11 +98,6 @@ export  default class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._title;
     this._cardTitle.textContent = this._title;
-  }
-
-  _hideTrashButton() {
-    this._trashButton.classList.add('cards__trash-button_hidden');
-    this._trashButton.disabled = true;
   }
 
   createCard() {
